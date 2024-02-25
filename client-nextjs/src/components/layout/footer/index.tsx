@@ -3,6 +3,7 @@ import Image from 'next/image'
 import styles from './footer.module.css'
 import travelgenLogo from '/public/travelgen-footer-logo.png'
 import Container from '@/components/container'
+import FooterInfo from './footer-info'
 
 export default function Footer(): React.ReactNode {
   return (
@@ -18,6 +19,51 @@ export default function Footer(): React.ReactNode {
               width={136}
             />
           </figure>
+
+          <div className="flex-1 flex justify-between ml-[106px]">
+            <FooterInfo
+              title="Info"
+              content={[
+                {
+                  label: 'About',
+                  href: '/'
+                },
+                {
+                  label: 'Contact Us',
+                  href: '/'
+                },
+                {
+                  label: 'Testimonies',
+                  href: '/'
+                }
+              ]}
+            />
+            <FooterInfo
+              title="Company"
+              content={[
+                {
+                  label: 'Terms & Conditions',
+                  href: '/'
+                },
+                {
+                  label: 'Privacy Agreements',
+                  href: '/'
+                },
+                {
+                  label: 'Blog',
+                  href: '/'
+                },
+                {
+                  label: 'Help Desk',
+                  href: '/'
+                }
+              ]}
+            />
+            <FooterInfo
+              title="Contact"
+              content={['Jakarta, Indonesia', 'diazlinggaputra@gmail.com']}
+            />
+          </div>
         </div>
       </Container>
 

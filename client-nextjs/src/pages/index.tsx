@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>TravelGen Application</title>
+        <title>TravelGen Web</title>
       </Head>
       <Layout>
         <div className="text-yellow-70 font-label text-2xl font-bold">
