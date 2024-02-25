@@ -46,7 +46,6 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
-          <title>TravelGen Application</title>
           <meta
             name="description"
             content="Discover the world with us by your side"

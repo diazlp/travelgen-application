@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react'
 import Header from './header'
+import Footer from './footer'
 
 export default function Layout({
   children
@@ -8,9 +9,9 @@ export default function Layout({
 }): React.ReactNode {
   return (
     <Fragment>
-      <Header></Header>
+      <Header />
       {children}
-      <footer></footer>
+      <Footer />
     </Fragment>
   )
 }

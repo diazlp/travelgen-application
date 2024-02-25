@@ -8,7 +8,7 @@ import Button from '@/components/button'
 
 export default function Header(): React.ReactNode {
   return (
-    <header className="h-[85px] bg-white shadow-log p-4">
+    <header className="h-[85px] bg-white shadow-lg p-4">
       <Container>
         <div className="flex justify-between items-center text-black">
           <div className="flex items-center">
