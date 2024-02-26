@@ -1,6 +1,5 @@
 import React from 'react'
 import Image from 'next/image'
-import travelgenLogo from '/public/travelgen-header-logo.png'
 import Container from '../../container'
 import Search from './search'
 import Navigation from './navigation'
@@ -13,10 +12,10 @@ export default function Header(): React.ReactNode {
         <div className="flex justify-between items-center text-black">
           <div className="flex items-center">
             <Image
-              src={travelgenLogo}
+              src={'/assets/travelgen-header-logo.png'}
               className="cursor-pointer select-none"
               alt="Travelgen Header Logo"
-              placeholder="blur"
+              // placeholder="blur"
               height={48}
               width={182}
             />

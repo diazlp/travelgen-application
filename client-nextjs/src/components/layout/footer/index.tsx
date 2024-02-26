@@ -1,7 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
 import styles from './footer.module.css'
-import travelgenLogo from '/public/travelgen-footer-logo.png'
 import Container from '@/components/container'
 import FooterInfo from './footer-info'
 
@@ -12,9 +11,9 @@ export default function Footer(): React.ReactNode {
         <div className="flex bg-white p-16">
           <figure>
             <Image
-              src={travelgenLogo}
+              src={'/assets/travelgen-footer-logo.png'}
               alt="Travelgen Footer Logo"
-              placeholder="blur"
+              // placeholder="blur"
               height={98}
               width={136}
             />

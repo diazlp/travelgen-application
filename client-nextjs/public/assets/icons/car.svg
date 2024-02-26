@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:svg="http://www.w3.org/2000/svg" id="svg5161" viewBox="0 0 200.8 166" version="1.1">
+  <g id="layer1" transform="translate(-389.72 -120.17)">
+    <g id="g3987" transform="translate(44.361 -389.76)">
+      <path id="path3569-7" d="m357.36 641.93v27.6c0 3.5456 2.8544 6.4 6.4 6.4h16c3.5456 0 6.4-2.8544 6.4-6.4v-27.6z"/>
+      <path id="path3571-5" d="m385.56 509.93c-4.6437 0-8.6063 2.8055-10.312 6.8125l-29 68c-0.57449 1.3468-0.88752 2.8264-0.88752 4.3876v37.6c0 6.2048 4.9952 11.2 11.2 11.2h89.2v-35.103h-28.214v-14.117h28.214v-20.83l-77.162 0.2125c5.1024-12.81 15.312-38.437 15.312-38.437 1.9152-4.8078 2.046-5.4523 4.8124-5.45l57.038 0.05v-14.325z"/>
+      <rect id="rect3703" ry="5.7143" height="25.714" width="11.429" y="588.65" x="360" fill="#fff"/>
+    </g>
+    <use id="use3024" xlink:href="#g3987" transform="matrix(-1 0 0 1 980.24 0)" height="744.09448" width="1052.3622" y="0" x="0"/>
+  </g>
+  <metadata>
+    <rdf:RDF>
+      <cc:Work>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+        <cc:license rdf:resource="http://creativecommons.org/licenses/publicdomain/"/>
+        <dc:publisher>
+          <cc:Agent rdf:about="http://openclipart.org/">
+            <dc:title>Openclipart</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:title>car pictogram rear</dc:title>
+        <dc:date>2012-07-10T12:22:56</dc:date>
+        <dc:description>Rear view of a car</dc:description>
+        <dc:source>http://openclipart.org/detail/171115/car-pictogram-rear-by-jonadem-171115</dc:source>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>jonadem</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>car</rdf:li>
+            <rdf:li>clip art</rdf:li>
+            <rdf:li>clipart</rdf:li>
+            <rdf:li>pictogram</rdf:li>
+            <rdf:li>rear</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+      </cc:Work>
+      <cc:License rdf:about="http://creativecommons.org/licenses/publicdomain/">
+        <cc:permits rdf:resource="http://creativecommons.org/ns#Reproduction"/>
+        <cc:permits rdf:resource="http://creativecommons.org/ns#Distribution"/>
+        <cc:permits rdf:resource="http://creativecommons.org/ns#DerivativeWorks"/>
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+</svg>
