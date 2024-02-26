@@ -10,14 +10,14 @@ export default function PromoCard({
 }): React.ReactNode {
   return (
     <article className="bg-white shadow-lg rounded-xl overflow-hidden w-[500px] h-[312px] flex">
-      <figure className="relative w-[212px] h-full]">
+      <figure className="relative w-[212px] h-full">
         <Image
           src={data.thumbnail}
           alt={data.name}
           className="object-cover object-center"
           fill
           sizes="400px"
-          priority
+          loading="lazy"
         />
       </figure>
 

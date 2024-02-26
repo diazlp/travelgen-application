@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react'
 import Carousel from 'react-multi-carousel'
-import PromoCard from './promo-card'
-import { promos } from '@/libs/utils/constants'
+import { promos } from '@/libs/constants'
 import { Package } from '@/libs/types/interface'
+import PromoCard from './promo-card'
 
 export default function PromoCarousel(): React.ReactNode {
   return (
