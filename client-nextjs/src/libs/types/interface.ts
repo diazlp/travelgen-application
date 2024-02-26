@@ -17,3 +17,14 @@ export interface Category {
   name: string
   thumbnail: string
 }
+
+export interface Testimony {
+  id: string
+  fullName: string
+  photo: string
+  location: string
+  review: string
+  rating: number
+  destination: string
+  checkoutDate: string
+}
