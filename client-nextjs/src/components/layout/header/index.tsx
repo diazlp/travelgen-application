@@ -15,9 +15,10 @@ export default function Header(): React.ReactNode {
               src={'/assets/travelgen-header-logo.png'}
               className="cursor-pointer select-none"
               alt="Travelgen Header Logo"
-              // placeholder="blur"
+              placeholder="empty"
               height={48}
               width={182}
+              priority
             />
 
             <Search />

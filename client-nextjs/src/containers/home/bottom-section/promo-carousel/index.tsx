@@ -1,6 +1,8 @@
 import React, { Fragment } from 'react'
 import Carousel from 'react-multi-carousel'
 import PromoCard from './promo-card'
+import { promos } from '@/libs/utils/constants'
+import { Package } from '@/libs/types/interface'
 
 export default function PromoCarousel(): React.ReactNode {
   return (
@@ -42,7 +44,7 @@ export default function PromoCarousel(): React.ReactNode {
             />
           </button>
         }
-        partialVisbile
+        partialVisible
         responsive={{
           desktop: {
             breakpoint: {
@@ -54,12 +56,9 @@ export default function PromoCarousel(): React.ReactNode {
           }
         }}
       >
-        <PromoCard />
-        <PromoCard />
-        <PromoCard />
-        <PromoCard />
-        <PromoCard />
-        <PromoCard />
+        {promos.map((promo: Package) => {
+          return <PromoCard data={promo} key={promo.id} />
+        })}
       </Carousel>
     </Fragment>
   )

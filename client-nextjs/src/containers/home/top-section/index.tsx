@@ -29,8 +29,7 @@ export default function TopSection(): React.ReactNode {
           <Image
             src={headerPhoto}
             alt="Travelgen Header Photo"
-            objectFit="contain"
-            className="absolute top-0 right-0 mt-[85px]"
+            className="absolute top-0 right-0 mt-[85px] object-contain"
           />
         </div>
         <div className="flex gap-40 mx-auto">
