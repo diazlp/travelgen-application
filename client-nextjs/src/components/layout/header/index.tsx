@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 import Image from 'next/image'
 import Container from '../../container'
 import Search from './search'
@@ -11,22 +12,26 @@ export default function Header(): React.ReactNode {
       <Container>
         <div className="flex justify-between items-center text-black">
           <div className="flex items-center">
-            <Image
-              src={'/assets/travelgen-header-logo.png'}
-              className="cursor-pointer select-none"
-              alt="Travelgen Header Logo"
-              placeholder="empty"
-              height={48}
-              width={182}
-              priority
-            />
+            <Link href="/">
+              <Image
+                src={'/assets/travelgen-header-logo.png'}
+                className="cursor-pointer select-none"
+                alt="Travelgen Header Logo"
+                placeholder="empty"
+                height={48}
+                width={182}
+                priority
+              />
+            </Link>
 
-            <Search />
+            {/* <Search /> */}
           </div>
 
           <div className="flex items-center gap-5">
             <Navigation />
-            <Button className="w-[190px]">Login</Button>
+            <Link href="/login">
+              <Button className="w-[190px]">Login</Button>
+            </Link>
           </div>
         </div>
       </Container>

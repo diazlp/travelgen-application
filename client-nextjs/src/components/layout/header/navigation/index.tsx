@@ -1,5 +1,4 @@
 import React from 'react'
-import Link from 'next/link'
 import NavigationItem from './nav-item'
 
 export default function Navigation(): React.ReactNode {

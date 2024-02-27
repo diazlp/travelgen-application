@@ -5,7 +5,7 @@ import Layout from '@/components/layout'
 import Button from '@/components/button'
 import Input from '@/components/input'
 
-export default function LoginContainer(): React.ReactNode {
+export default function RegisterContainer(): React.ReactNode {
   return (
     <Layout noFooter>
       <div className="flex justify-between">
@@ -20,21 +20,29 @@ export default function LoginContainer(): React.ReactNode {
         </div>
 
         <div className="flex-1 flex flex-col absolute left-[60%] top-[55%] -translate-y-1/2 min-w-[393px]">
-          <p className="text-heading-3 font-label font-extrabold">Login</p>
+          <p className="text-heading-3 font-label font-extrabold">Register</p>
 
           <div className="flex mt-3">
             <p className="text-heading-5 text-gray-50 font-semibold">
-              Don't have an account?
+              Already have an account?
             </p>
             <Link
-              href="/register"
+              href="/login"
               className="text-heading-5 text-blue-100 font-semibold ml-2 hover:underline"
             >
-              Sign up here
+              Sign in here
             </Link>
           </div>
 
           <form className="flex flex-col mt-8">
+            <Input
+              label="Full Name"
+              type="text"
+              name="FullName"
+              placeholder="Enter your Fullname"
+              className="mb-6"
+            />
+
             <Input
               label="Email"
               type="email"
@@ -48,32 +56,13 @@ export default function LoginContainer(): React.ReactNode {
               type="password"
               name="Password"
               placeholder="Enter your password"
+              className="mb-6"
             />
 
-            <a
-              href="#"
-              className="text-heading-5 text-blue-100 font-semibold mt-8 mb-4 hover:underline"
-            >
-              Forgot your password?
-            </a>
-
             <Button type="submit" isFullWidth>
-              Login
+              Register
             </Button>
           </form>
-
-          <div className="flex items-center gap-5 opacity-60">
-            <div className="flex-1 h-[0.05rem] bg-gray-500"></div>
-            <p className="text-heading-5 text-gray-50 my-4">or login with</p>
-            <div className="flex-1 h-[0.05rem] bg-gray-500"></div>
-          </div>
-
-          <Button
-            variant="google"
-            className="flex items-center gap-2 justify-center"
-          >
-            Google
-          </Button>
         </div>
       </div>
     </Layout>

@@ -60,6 +60,8 @@ export default function Input({
           {hidePassword ? <FaEyeSlash size={20} /> : <FaEye size={20} />}
         </button>
       ) : null}
+
+      {/* <span className="text-xs text-red-100 ml-3">Error nih bos</span> */}
     </label>
   )
 }
