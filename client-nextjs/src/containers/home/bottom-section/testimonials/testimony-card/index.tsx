@@ -36,10 +36,8 @@ export default function TestimonyCard({
         <Rating rating={data.rating} />
       </div>
 
-      <p className="text-heading-5 text-gray-70 my-4 min-h-[80px]">
-        {data.review.length <= 140
-          ? data.review
-          : `${data.review.slice(0, 145)}...`}
+      <p className="text-heading-5 text-gray-70 my-4 min-h-[80px] line-clamp-6">
+        {data.review}
       </p>
       <p className="text-heading-5 text-gray-100 font-bold">
         {data.destination}

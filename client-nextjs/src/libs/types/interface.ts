@@ -11,13 +11,11 @@ export interface Package {
   reviewers: number
   isPromo?: boolean
 }
-
 export interface Category {
   id: string
   name: string
   thumbnail: string
 }
-
 export interface Testimony {
   id: string
   fullName: string
