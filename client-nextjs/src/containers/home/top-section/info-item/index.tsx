@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function TopInfo({
+export default function InfoItem({
   label,
   subLabel
 }: {

@@ -1,14 +1,13 @@
 .button {
-  @apply bg-blue-100 text-white p-2 h-[45px] font-label font-bold rounded-md;
-  max-width: 190px;
+  @apply text-white p-2 h-[45px] font-label font-bold rounded-md;
 }
 
 .fullWidth {
-  width: 100% !important;
+  width: 100%;
 }
 
 .outlined {
-  background-color: #ffffff !important;
-  border: 1px solid rgb(16 83 183) !important;
-  color: rgb(16 83 183) !important;
+  background-color: #ffffff;
+  border: 1px solid rgb(16 83 183);
+  color: rgb(16 83 183);
 }

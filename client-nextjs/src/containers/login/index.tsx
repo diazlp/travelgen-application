@@ -56,8 +56,23 @@ export default function LoginContainer(): React.ReactNode {
               Forgot your password?
             </a>
 
-            <Button>Login</Button>
+            <Button type="submit" isFullWidth>
+              Login
+            </Button>
           </form>
+
+          <div className="flex items-center gap-5 opacity-60">
+            <div className="flex-1 h-[0.05rem] bg-gray-500"></div>
+            <p className="text-heading-5 text-gray-50 my-4">or login with</p>
+            <div className="flex-1 h-[0.05rem] bg-gray-500"></div>
+          </div>
+
+          <Button
+            variant="google"
+            className="flex items-center gap-2 justify-center"
+          >
+            Google
+          </Button>
         </div>
       </div>
     </Layout>

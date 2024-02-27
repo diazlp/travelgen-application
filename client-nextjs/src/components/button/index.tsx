@@ -1,23 +1,37 @@
-import React from 'react'
+import React, { ButtonHTMLAttributes } from 'react'
+import { FaGoogle } from 'react-icons/fa6'
 import styles from './Button.module.css'
+
+interface ButtonProps {
+  children: React.ReactNode | string
+  className?: string
+  isFullWidth?: boolean
+  isOutlined?: boolean
+  type?: ButtonHTMLAttributes<HTMLButtonElement>['type']
+  variant?: 'primary' | 'google'
+}
 
 export default function Button({
   children,
   className,
   isFullWidth,
-  isOutlined
-}: {
-  children: React.ReactNode
-  className?: string
-  isFullWidth?: boolean
-  isOutlined?: boolean
-}): React.ReactNode {
+  isOutlined,
+  type,
+  variant = 'primary'
+}: ButtonProps): React.ReactNode {
   return (
     <button
-      className={`${styles.button} ${className} ${
-        isFullWidth ? styles.fullWidth : ''
-      } ${isOutlined ? styles.outlined : ''}`}
+      type={type}
+      className={`
+        ${styles.button} 
+        ${className}
+        ${isFullWidth ? styles.fullWidth : ''} 
+        ${isOutlined ? styles.outlined : ''}
+        ${variant === 'primary' ? 'bg-blue-100' : 'bg-red-100'}
+        `}
     >
+      {variant === 'google' && <FaGoogle color="white" size={20} />}
+
       {children}
     </button>
   )

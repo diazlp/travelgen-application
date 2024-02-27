@@ -3,7 +3,7 @@ import Image from 'next/image'
 import headerPhoto from '/public/assets/home/header.png'
 import Button from '@/components/button'
 import Container from '@/components/container'
-import TopInfo from './top-info'
+import InfoItem from './info-item'
 
 export default function TopSection(): React.ReactNode {
   return (
@@ -33,10 +33,10 @@ export default function TopSection(): React.ReactNode {
           />
         </div>
         <div className="flex gap-40 mx-auto">
-          <TopInfo label="+30" subLabel="Countries" />
-          <TopInfo label="+1500" subLabel="Lodges" />
-          <TopInfo label="+100" subLabel="Destinations" />
-          <TopInfo label="+50.000" subLabel="Customers" />
+          <InfoItem label="+30" subLabel="Countries" />
+          <InfoItem label="+1500" subLabel="Lodges" />
+          <InfoItem label="+100" subLabel="Destinations" />
+          <InfoItem label="+50.000" subLabel="Customers" />
         </div>
       </div>
     </Container>
