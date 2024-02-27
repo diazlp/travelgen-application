@@ -10,6 +10,17 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      keyframes: {
+        fadeInHeader: {
+          '0%': { opacity: '0' },
+          '30%': { opacity: '1' },
+          '80%': { opacity: '1' },
+          '100%': { opacity: '0' }
+        }
+      },
+      animation: {
+        fadeInHeader: 'fadeInHeader 8s ease-in-out'
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
