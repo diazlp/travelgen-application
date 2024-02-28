@@ -1,6 +1,20 @@
 import fastify, { FastifyInstance, RouteShorthandOptions } from 'fastify';
+import cors from '@fastify/cors';
+import fastifySwagger from '@fastify/swagger';
+import fastifySwaggerUi from '@fastify/swagger-ui';
+import { swaggerOptions, swaggerUIOptions } from '../lib/swagger/options';
 
-const app: FastifyInstance = fastify({ logger: false });
+import { authRoutes } from './routes/auth';
+
+const app: FastifyInstance = fastify({
+  logger: false,
+});
+
+app.register(cors, { origin: '*' });
+
+/*Swagger Documentation*/
+app.register(fastifySwagger, swaggerOptions);
+app.register(fastifySwaggerUi, swaggerUIOptions);
 
 // import { PrismaClient } from '@prisma/client';
 // const prisma = new PrismaClient();
@@ -11,7 +25,7 @@ const opts: RouteShorthandOptions = {
       200: {
         type: 'object',
         properties: {
-          pong: {
+          message: {
             type: 'string',
           },
         },
@@ -20,9 +34,18 @@ const opts: RouteShorthandOptions = {
   },
 };
 
-app.get('/ping', opts, async (request, reply) => {
-  reply.send('pong');
-});
+app.register(
+  (_, __, done) => {
+    app.get('/v1.0/health', opts, async (_, reply) => {
+      reply.send({ message: 'Health checked.' });
+    });
+
+    done();
+  },
+  { prefix: 'v1.0' },
+);
+
+app.register(authRoutes, { prefix: '/v1.0' });
 
 app.route({
   method: 'GET',
