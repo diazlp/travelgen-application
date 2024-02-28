@@ -1,37 +1,42 @@
 import { PrismaClient } from '@prisma/client';
 import { hashPassword } from 'lib/utils/bcrypt';
-import { usersData, profilesData } from './data';
+import {
+  usersData,
+  profilesData,
+  packagesData,
+  transactionsData,
+} from './data';
 
 const prisma = new PrismaClient();
 
 async function seed() {
   try {
-    for (const userData of usersData) {
-      const hashedPassword = await hashPassword(userData.password);
+    for (const user of usersData) {
+      const hashedPassword = await hashPassword(user.password);
 
       // Check if the user already exists
       const existingUser = await prisma.user.findUnique({
-        where: { email: userData.email },
+        where: { email: user.email },
       });
 
       // If user doesn't exist, create it
       if (!existingUser) {
         await prisma.user.create({
           data: {
-            ...userData,
+            ...user,
             password: hashedPassword,
           },
         });
       }
 
       const userProfileData = profilesData.find(
-        (profile) => profile.user_id === userData.id,
+        (profile) => profile.user_id === user.id,
       );
 
       if (userProfileData) {
         // Check if the profile already exists
         const existingProfile = await prisma.profile.findUnique({
-          where: { user_id: userData.id },
+          where: { user_id: user.id },
         });
 
         // If profile doesn't exist, create it
@@ -42,6 +47,38 @@ async function seed() {
             },
           });
         }
+      }
+    }
+
+    for (const pkg of packagesData) {
+      // Check if the package already exists
+      const existingPackage = await prisma.package.findUnique({
+        where: { id: pkg.id },
+      });
+
+      // If package doesn't exist, create it
+      if (!existingPackage) {
+        await prisma.package.create({
+          data: {
+            ...pkg,
+          },
+        });
+      }
+    }
+
+    for (const transaction of transactionsData) {
+      // Check if the package already exists
+      const existingPackage = await prisma.transaction.findUnique({
+        where: { id: transaction.id },
+      });
+
+      // If package doesn't exist, create it
+      if (!existingPackage) {
+        await prisma.transaction.create({
+          data: {
+            ...transaction,
+          },
+        });
       }
     }
 

@@ -18,12 +18,12 @@ model User {
   email             String        @unique
   full_name         String        @db.VarChar(100)
   password          String        @db.VarChar(100)
-  role              String?
+  role              String?       @default("User")
   is_verified       Boolean       @default(false)
-  verification_code String        @db.VarChar(5)
+  verification_code String        @default("abcde") @db.VarChar(5)
   created_at        DateTime      @default(now()) @db.Date
   updated_at        DateTime      @default(now()) @db.Date
-  Profile           Profile?      
+  Profile           Profile?
   Transaction       Transaction[]
 }
 
@@ -33,7 +33,7 @@ model Profile {
   user          User      @relation(fields: [user_id], references: [id], onDelete: Cascade)
   avatar        String?   @db.VarChar(1000)
   date_of_birth DateTime? @db.Date
-  location      String    @db.VarChar(50)
+  location      String?   @db.VarChar(50)
   biography     String?   @db.VarChar(1000)
   interests     String[]
 }
@@ -52,17 +52,18 @@ model Package {
   is_promo       Boolean      @default(false)
   created_at     DateTime     @default(now()) @db.Date
   updated_at     DateTime     @default(now()) @db.Date
-  Transaction    Transaction? @relation(fields: [transactionId], references: [id], onDelete: Cascade)
-  transactionId  Int?
+  Transaction    Transaction[] 
 }
 
 model Transaction {
-  id         Int       @id @default(autoincrement())
-  user_id    Int
-  package_id Int
-  user       User      @relation(fields: [user_id], references: [id], onDelete: Cascade)
-  package    Package[]
-  is_paid    Boolean   @default(false)
-  created_at DateTime  @default(now()) @db.Date
-  updated_at DateTime  @default(now()) @db.Date
+  id          Int       @id @default(autoincrement())
+  user_id     Int
+  user        User      @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  package_id  Int
+  package     Package   @relation(fields: [package_id], references: [id], onDelete: Cascade)
+  quantity    Int       @default(1)
+  is_paid     Boolean   @default(false)
+  checkout_at DateTime  @default(now()) @db.Date
+  created_at  DateTime  @default(now()) @db.Date
+  updated_at  DateTime  @default(now()) @db.Date
 }
