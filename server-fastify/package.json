@@ -1,0 +1,22 @@
+{
+  "name": "travelgen-server",
+  "version": "0.1.0",
+  "description": "Travelgen Application Server",
+  "private": true,
+  "author": "Diaz Linggaputra",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "nodemon index.ts --watch",
+    "start": "node dist/index.ts"
+  },
+  "dependencies": {
+    "fastify": "^4.26.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.21",
+    "nodemon": "^3.1.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  }
+}
