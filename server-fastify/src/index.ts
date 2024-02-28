@@ -3,22 +3,32 @@ import cors from '@fastify/cors';
 import fastifySwagger from '@fastify/swagger';
 import fastifySwaggerUi from '@fastify/swagger-ui';
 import { swaggerOptions, swaggerUIOptions } from '../lib/swagger/options';
+import fastifyBcrypt from 'fastify-bcrypt';
 
-import { authRoutes } from './routes/auth';
-
-import { PrismaClient } from '@prisma/client';
+import { authRoutes } from './routes/auth.routes';
+import fastifyJwt from '@fastify/jwt';
 
 const app: FastifyInstance = fastify({
   logger: false,
 });
 
 app.register(cors, { origin: '*' });
+app.register(fastifyBcrypt, {
+  saltWorkFactor: 10,
+});
+app.register(fastifyJwt, {
+  secret: process.env.SECRET_KEY,
+});
 
 /*Swagger Documentation*/
 app.register(fastifySwagger, swaggerOptions);
 app.register(fastifySwaggerUi, swaggerUIOptions);
 
-// const prisma = new PrismaClient();
+app.addHook('onRequest', (request, _, done) => {
+  console.log('masuk sini dulu say');
+
+  done();
+});
 
 const opts: RouteShorthandOptions = {
   schema: {

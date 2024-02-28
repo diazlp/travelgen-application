@@ -67,13 +67,13 @@ async function seed() {
     }
 
     for (const transaction of transactionsData) {
-      // Check if the package already exists
-      const existingPackage = await prisma.transaction.findUnique({
+      // Check if the transaction already exists
+      const existingTransaction = await prisma.transaction.findUnique({
         where: { id: transaction.id },
       });
 
-      // If package doesn't exist, create it
-      if (!existingPackage) {
+      // If transaction doesn't exist, create it
+      if (!existingTransaction) {
         await prisma.transaction.create({
           data: {
             ...transaction,
