@@ -6,6 +6,8 @@ import { swaggerOptions, swaggerUIOptions } from '../lib/swagger/options';
 
 import { authRoutes } from './routes/auth';
 
+import { PrismaClient } from '@prisma/client';
+
 const app: FastifyInstance = fastify({
   logger: false,
 });
@@ -16,7 +18,6 @@ app.register(cors, { origin: '*' });
 app.register(fastifySwagger, swaggerOptions);
 app.register(fastifySwaggerUi, swaggerUIOptions);
 
-// import { PrismaClient } from '@prisma/client';
 // const prisma = new PrismaClient();
 
 const opts: RouteShorthandOptions = {
@@ -33,7 +34,6 @@ const opts: RouteShorthandOptions = {
     },
   },
 };
-
 app.register(
   (_, __, done) => {
     app.get('/v1.0/health', opts, async (_, reply) => {

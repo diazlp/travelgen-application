@@ -1,0 +1,68 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                Int           @id @default(autoincrement())
+  email             String        @unique
+  full_name         String        @db.VarChar(100)
+  password          String        @db.VarChar(100)
+  role              String?
+  is_verified       Boolean       @default(false)
+  verification_code String        @db.VarChar(5)
+  created_at        DateTime      @default(now()) @db.Date
+  updated_at        DateTime      @default(now()) @db.Date
+  Profile           Profile?      
+  Transaction       Transaction[]
+}
+
+model Profile {
+  id            Int       @id @default(autoincrement())
+  user_id       Int       @unique
+  user          User      @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  avatar        String?   @db.VarChar(1000)
+  date_of_birth DateTime? @db.Date
+  location      String    @db.VarChar(50)
+  biography     String?   @db.VarChar(1000)
+  interests     String[]
+}
+
+model Package {
+  id             Int          @id @default(autoincrement())
+  name           String       @db.VarChar(100)
+  country        String       @db.VarChar(100)
+  price          Int
+  thumbnail      String       @db.VarChar(1000)
+  images         String[]
+  description    String       @db.VarChar(1000)
+  departure_date DateTime
+  rating         Int
+  reviewers      Int
+  is_promo       Boolean      @default(false)
+  created_at     DateTime     @default(now()) @db.Date
+  updated_at     DateTime     @default(now()) @db.Date
+  Transaction    Transaction? @relation(fields: [transactionId], references: [id], onDelete: Cascade)
+  transactionId  Int?
+}
+
+model Transaction {
+  id         Int       @id @default(autoincrement())
+  user_id    Int
+  package_id Int
+  user       User      @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  package    Package[]
+  is_paid    Boolean   @default(false)
+  created_at DateTime  @default(now()) @db.Date
+  updated_at DateTime  @default(now()) @db.Date
+}
