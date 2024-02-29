@@ -26,6 +26,10 @@ export const swaggerOptions: FastifyDynamicSwaggerOptions = {
     produces: ['application/json'],
     tags: [
       {
+        name: 'Health',
+        description: 'Application Health Checker',
+      },
+      {
         name: 'Auth',
         description: 'Authentication API',
       },
@@ -71,11 +75,11 @@ export const swaggerOptions: FastifyDynamicSwaggerOptions = {
         },
       },
     },
-    security: [
-      {
-        ApiToken: [],
-      },
-    ],
+    // security: [
+    //   {
+    //     ApiToken: [],
+    //   },
+    // ],
   },
 };
 

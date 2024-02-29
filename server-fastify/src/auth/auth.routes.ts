@@ -4,8 +4,8 @@ import {
   FastifyRequest,
   FastifyReply,
 } from 'fastify';
-import { loginSchema } from '../schemas/auth.schema';
-import AuthService from '../services/auth.service';
+import { loginSchema } from './auth.schema';
+import AuthService from './auth.service';
 
 export function authRoutes(
   fastify: FastifyInstance,

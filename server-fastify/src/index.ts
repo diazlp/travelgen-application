@@ -1,60 +1,42 @@
-import fastify, { FastifyInstance, RouteShorthandOptions } from 'fastify';
+import fastify, { FastifyInstance } from 'fastify';
 import cors from '@fastify/cors';
 import fastifySwagger from '@fastify/swagger';
 import fastifySwaggerUi from '@fastify/swagger-ui';
 import { swaggerOptions, swaggerUIOptions } from '../lib/swagger/options';
 import fastifyBcrypt from 'fastify-bcrypt';
 
-import { authRoutes } from './routes/auth.routes';
+import { authRoutes } from './auth/auth.routes';
 import fastifyJwt from '@fastify/jwt';
+import { healthRoutes } from './health/health.routes';
 
 const app: FastifyInstance = fastify({
   logger: false,
 });
 
+/*Application Cross-Origin Resource Sharing (CORS)*/
 app.register(cors, { origin: '*' });
+
+/*Register Bcrypt Hashing*/
 app.register(fastifyBcrypt, {
   saltWorkFactor: 10,
 });
+
+/*Register Authorization with JWT*/
 app.register(fastifyJwt, {
   secret: process.env.SECRET_KEY,
 });
 
-/*Swagger Documentation*/
+/*Register Swagger Documentation*/
 app.register(fastifySwagger, swaggerOptions);
 app.register(fastifySwaggerUi, swaggerUIOptions);
 
-app.addHook('onRequest', (request, _, done) => {
-  console.log('masuk sini dulu say');
+// app.addHook('onRequest', (request, _, done) => {
+//   console.log('<<<<<<<<<<<<<<<<');
 
-  done();
-});
+//   done();
+// });
 
-const opts: RouteShorthandOptions = {
-  schema: {
-    response: {
-      200: {
-        type: 'object',
-        properties: {
-          message: {
-            type: 'string',
-          },
-        },
-      },
-    },
-  },
-};
-app.register(
-  (_, __, done) => {
-    app.get('/v1.0/health', opts, async (_, reply) => {
-      reply.send({ message: 'Health checked.' });
-    });
-
-    done();
-  },
-  { prefix: 'v1.0' },
-);
-
+app.register(healthRoutes, { prefix: '/v1.0' });
 app.register(authRoutes, { prefix: '/v1.0' });
 
 app.route({
