@@ -1,5 +1,5 @@
 export interface IUserModel {
-  id: number;
+  id?: number;
   email: string;
   full_name: string;
   password: string;
@@ -11,7 +11,7 @@ export interface IUserModel {
 }
 
 export interface IProfileModel {
-  id: number;
+  id?: number;
   user_id: number;
   avatar: string;
   date_of_birth: Date;

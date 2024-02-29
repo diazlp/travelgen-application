@@ -50,6 +50,22 @@ async function seed() {
       }
     }
 
+    for (const profile of profilesData) {
+      // Check if the profile already exists
+      const existingProfile = await prisma.profile.findUnique({
+        where: { user_id: profile.user_id },
+      });
+
+      // If profile doesn't exist, create it
+      if (!existingProfile) {
+        await prisma.profile.create({
+          data: {
+            ...profile,
+          },
+        });
+      }
+    }
+
     for (const pkg of packagesData) {
       // Check if the package already exists
       const existingPackage = await prisma.package.findUnique({

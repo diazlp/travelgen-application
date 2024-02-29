@@ -2,15 +2,16 @@ import fastify, { FastifyInstance } from 'fastify';
 import cors from '@fastify/cors';
 import fastifySwagger from '@fastify/swagger';
 import fastifySwaggerUi from '@fastify/swagger-ui';
-import { swaggerOptions, swaggerUIOptions } from '../lib/swagger/options';
 import fastifyBcrypt from 'fastify-bcrypt';
+import fastifyJwt from '@fastify/jwt';
+
+import { swaggerOptions, swaggerUIOptions } from '../lib/swagger/options';
 
 import { authRoutes } from './auth/auth.routes';
-import fastifyJwt from '@fastify/jwt';
 import { healthRoutes } from './health/health.routes';
 
 const app: FastifyInstance = fastify({
-  logger: false,
+  logger: true,
 });
 
 /*Application Cross-Origin Resource Sharing (CORS)*/

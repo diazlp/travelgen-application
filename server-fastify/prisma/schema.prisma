@@ -33,8 +33,8 @@ model Profile {
   user          User      @relation(fields: [user_id], references: [id], onDelete: Cascade)
   avatar        String?   @db.VarChar(1000)
   date_of_birth DateTime? @db.Date
-  location      String?   @db.VarChar(50)
-  biography     String?   @db.VarChar(1000)
+  location      String?   @db.VarChar(50) @default("Location N/A")
+  biography     String?   @db.VarChar(1000) @default("Hey there! I am a new Traveller!")
   interests     String[]
 }
 

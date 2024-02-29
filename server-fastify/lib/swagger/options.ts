@@ -11,7 +11,7 @@ export const swaggerOptions: FastifyDynamicSwaggerOptions = {
       // termsOfService: 'https://mywebsite.io/tos',
       contact: {
         name: 'Diaz Linggaputra',
-        url: 'https://https://diazlinggaputra.vercel.app/',
+        url: 'https://diazlinggaputra.vercel.app/',
         email: 'diazlinggaputra@gmail.com',
       },
     },
@@ -98,7 +98,7 @@ export const swaggerUIOptions: FastifySwaggerUiOptions = {
     },
   },
   theme: {
-    title: 'TravelGen API Endpoint',
+    title: 'TravelGen API Swagger',
   },
   staticCSP: false,
   transformStaticCSP: (header) => header,

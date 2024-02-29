@@ -4,7 +4,7 @@ import {
   FastifyRequest,
   FastifyReply,
 } from 'fastify';
-import { loginSchema } from './auth.schema';
+import { loginSchema, registerSchema } from './auth.schema';
 import AuthService from './auth.service';
 
 export function authRoutes(
@@ -21,7 +21,6 @@ export function authRoutes(
       reply: FastifyReply,
       done: DoneFuncWithErrOrRes,
     ) => {
-      console.log(request.headers);
       // E.g. check authentication
     },
     handler: (request: FastifyRequest<any>, reply: FastifyReply) => {
@@ -29,8 +28,30 @@ export function authRoutes(
     },
   });
 
-  fastify.get('/auth/register', async (request, reply) => {
-    reply.send('Register here');
+  fastify.route({
+    method: 'POST',
+    url: '/auth/register',
+    schema: registerSchema,
+    preHandler: async (
+      request: FastifyRequest,
+      reply: FastifyReply,
+      done: DoneFuncWithErrOrRes,
+    ) => {
+      // E.g. check authentication
+    },
+    handler: (request: FastifyRequest<any>, reply: FastifyReply) => {
+      AuthService.registerHandler(fastify, request, reply);
+    },
+    preSerialization: (
+      request: FastifyRequest,
+      _,
+      __,
+      done: DoneFuncWithErrOrRes,
+    ) => {
+      console.log(request.body);
+
+      done();
+    },
   });
 
   done();
