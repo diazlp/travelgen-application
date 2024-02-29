@@ -11,7 +11,7 @@ import { authRoutes } from './auth/auth.routes';
 import { healthRoutes } from './health/health.routes';
 
 const app: FastifyInstance = fastify({
-  logger: true,
+  logger: false,
 });
 
 /*Application Cross-Origin Resource Sharing (CORS)*/

@@ -1,6 +1,7 @@
 import { FastifyRequest, FastifyReply, FastifyInstance } from 'fastify';
 import { PrismaClient } from '@prisma/client';
 import { DEFAULT_AVATAR } from '../../lib/constants';
+import MailService from '../../src/mail/mail.service';
 
 const prisma = new PrismaClient();
 
@@ -89,6 +90,12 @@ export default class AuthService {
           user_id: newUser.id,
           avatar: DEFAULT_AVATAR,
         },
+      });
+
+      await MailService.emailVerification({
+        fullName,
+        email,
+        verificationCode,
       });
 
       return reply.status(201).send({ message: 'Register successful' });
