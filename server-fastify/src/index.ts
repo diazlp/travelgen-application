@@ -24,7 +24,7 @@ app.register(fastifyBcrypt, {
 
 /*Register Authorization with JWT*/
 app.register(fastifyJwt, {
-  secret: process.env.SECRET_KEY,
+  secret: process.env.JWT_SECRET_KEY,
 });
 
 /*Register Swagger Documentation*/

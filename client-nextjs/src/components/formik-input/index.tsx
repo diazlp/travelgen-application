@@ -1,5 +1,5 @@
 import React, { InputHTMLAttributes, useState } from 'react'
-import { Field, ErrorMessage } from 'formik'
+import { Field } from 'formik'
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
 
 interface InputProps {
@@ -59,7 +59,7 @@ export default function FormikInput({
         <button
           type="button"
           className={`absolute h-7 w-7 right-0 -translate-x-1/2 -translate-y-1/2 ${
-            error ? 'top-[60%]' : 'top-[70%]'
+            error ? 'top-[55%]' : 'top-[70%]'
           }`}
           onClick={togglePasswordVisibility}
         >
@@ -67,12 +67,7 @@ export default function FormikInput({
         </button>
       ) : null}
 
-      <ErrorMessage
-        name={name as string}
-        component="div"
-        className="text-xs text-red-100 ml-3"
-      />
-      {/* <span className="text-xs text-red-100 ml-3">Error nih bos</span> */}
+      <span className="text-xs text-red-100 ml-3">{error}</span>
     </label>
   )
 }

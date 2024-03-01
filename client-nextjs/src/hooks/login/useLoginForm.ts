@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react'
-import { FormikConfig } from 'formik'
+import { FormikConfig, useFormik, FormikBag } from 'formik'
+import { useSession, signIn } from 'next-auth/react'
+import { useRouter } from 'next/router'
 
 interface FormValues {
   email: string
@@ -7,33 +9,51 @@ interface FormValues {
 }
 
 const useLoginForm = (): FormikConfig<FormValues> => {
+  const router = useRouter()
   const [initialValues] = useState<FormValues>({
     email: '',
     password: ''
   })
 
+  const { data: session } = useSession()
+
   const onSubmit = async (
     values: FormValues,
-    { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void }
+    {
+      setSubmitting,
+      setStatus
+    }: { setSubmitting: (isSubmitting: boolean) => void; setStatus: any }
   ) => {
     try {
       // Example: Make API call to login endpoint
-      const response = await fetch('https://example.com/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(values)
+      // const response = await fetch('https://example.com/login', {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'application/json'
+      //   },
+      //   body: JSON.stringify(values)
+      // })
+      // if (!response.ok) {
+      //   throw new Error('Failed to log in')
+      // }
+
+      const credentialSignIn = await signIn('credentials', {
+        email: values.email,
+        password: values.password,
+        redirect: false
       })
-      if (!response.ok) {
-        throw new Error('Failed to log in')
+      console.log(credentialSignIn, '<<< woi')
+
+      if (credentialSignIn?.status !== 200) {
+        setStatus(credentialSignIn?.error)
+      } else {
+        router.push('/')
       }
-      // Handle successful login
-      console.log('Login successful')
     } catch (error: any) {
       console.error('Error logging in:', error.message)
+    } finally {
+      setSubmitting(false)
     }
-    setSubmitting(false)
   }
 
   const validate = (values: FormValues): Partial<FormValues> => {
@@ -56,16 +76,16 @@ const useLoginForm = (): FormikConfig<FormValues> => {
 
   useEffect(() => {
     // Example: Fetch initial data when component mounts
-    const fetchData = async () => {
-      try {
-        const response = await fetch('https://example.com/initialData')
-        const data = await response.json()
-        console.log('Initial data:', data)
-      } catch (error: any) {
-        console.error('Error fetching initial data:', error.message)
-      }
-    }
-    fetchData()
+    // const fetchData = async () => {
+    //   try {
+    //     const response = await fetch('https://example.com/initialData')
+    //     const data = await response.json()
+    //     console.log('Initial data:', data)
+    //   } catch (error: any) {
+    //     console.error('Error fetching initial data:', error.message)
+    //   }
+    // }
+    // fetchData()
   }, []) // Run only once when component mounts
 
   return {

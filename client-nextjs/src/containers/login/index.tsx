@@ -43,7 +43,7 @@ export default function LoginContainer(): React.ReactNode {
             onSubmit={onSubmit}
             validate={validate}
           >
-            {({ isSubmitting, errors }) => (
+            {({ isSubmitting, errors, status }) => (
               <Form className="flex flex-col mt-8">
                 <FormikInput
                   label="Email"
@@ -53,7 +53,6 @@ export default function LoginContainer(): React.ReactNode {
                   className="mb-6"
                   error={errors['email']}
                 />
-
                 <FormikInput
                   label="Password"
                   type="password"
@@ -61,6 +60,10 @@ export default function LoginContainer(): React.ReactNode {
                   placeholder="Enter your password"
                   error={errors['password']}
                 />
+
+                <span className="text-heading-5 font-label font-bold w-full text-center text-xs text-red-100 mt-3">
+                  {status}
+                </span>
 
                 <a
                   href="#"
