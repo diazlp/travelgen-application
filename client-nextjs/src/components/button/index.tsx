@@ -9,6 +9,7 @@ interface ButtonProps {
   isOutlined?: boolean
   type?: ButtonHTMLAttributes<HTMLButtonElement>['type']
   variant?: 'primary' | 'google'
+  isDisabled?: boolean
 }
 
 export default function Button({
@@ -17,7 +18,8 @@ export default function Button({
   isFullWidth,
   isOutlined,
   type,
-  variant = 'primary'
+  variant = 'primary',
+  isDisabled = false
 }: ButtonProps): React.ReactNode {
   return (
     <button
@@ -28,6 +30,7 @@ export default function Button({
         ${isFullWidth ? styles.fullWidth : ''} 
         ${isOutlined ? styles.outlined : ''}
         ${variant === 'primary' ? 'bg-blue-100' : 'bg-red-100'}
+        ${isDisabled ? 'bg-blue-30 cursor-not-allowed' : null}
         `}
     >
       {variant === 'google' && <FaGoogle color="white" size={20} />}
