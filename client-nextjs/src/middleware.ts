@@ -10,7 +10,7 @@ export async function middleware(request: NextRequest) {
   })
 
   // Redirect users with a token trying to access /login to the dashboard
-  if (token?.token && request.nextUrl.pathname === '/login') {
+  if (token && request.nextUrl.pathname === '/login') {
     return NextResponse.redirect(new URL('/', request.url))
   }
 

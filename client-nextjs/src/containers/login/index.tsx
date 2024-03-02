@@ -2,6 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Formik, Form } from 'formik'
+import { signIn } from 'next-auth/react'
 import useLoginForm from '@/hooks/login/useLoginForm'
 import Layout from '@/components/layout'
 import Button from '@/components/button'
@@ -94,6 +95,9 @@ export default function LoginContainer(): React.ReactNode {
           <Button
             variant="google"
             className="flex items-center gap-2 justify-center"
+            props={{
+              onClick: () => signIn('google')
+            }}
           >
             Google
           </Button>

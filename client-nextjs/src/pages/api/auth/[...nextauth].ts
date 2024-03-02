@@ -1,6 +1,8 @@
 import NextAuth, {
+  Account,
   CookiesOptions,
   NextAuthOptions,
+  Profile,
   Session,
   User
 } from 'next-auth'
@@ -31,18 +33,18 @@ const cookies: Partial<CookiesOptions> = {
 
 export const authOptions: NextAuthOptions = {
   providers: [
-    // GoogleProvider({
-    //   clientId: process.env.GITHUB_ID,
-    //   clientSecret: process.env.GITHUB_SECRET
-    // })
+    GoogleProvider({
+      clientId: process.env.GOOGLE_OAUTH_ID as string,
+      clientSecret: process.env.GOOGLE_OAUTH_SECRET as string
+    }),
     CredentialsProvider({
-      name: 'Credentials',
+      name: 'credentials',
       credentials: {
         email: { label: 'Email', type: 'text' },
         password: { label: 'Password', type: 'password' }
       },
       async authorize(credentials) {
-        const res = await fetch('http://localhost:4009/v1.0/auth/login', {
+        const res = await fetch(`${process.env.BASE_API_URL}/v1.0/auth/login`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -67,7 +69,46 @@ export const authOptions: NextAuthOptions = {
     strategy: 'jwt'
   },
   callbacks: {
-    async jwt({ token, user }: { token: JWT; user?: User }): Promise<JWT> {
+    async signIn({ account, profile }): Promise<any> {
+      if (account?.provider === 'google') {
+        await fetch(`${process.env.BASE_API_URL}/v1.0/auth/register`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            fullName: profile?.name,
+            email: profile?.email,
+            password: 'travelgen'
+          })
+        })
+        return true
+      }
+      return true
+    },
+    async jwt({
+      account,
+      token,
+      user
+    }: {
+      account: any
+      token: JWT
+      user?: User
+    }): Promise<JWT> {
+      if (account?.provider === 'google') {
+        const res = await fetch(`${process.env.BASE_API_URL}/v1.0/auth/login`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            email: token?.email,
+            password: 'travelgen'
+          })
+        })
+        const userToken = await res.json()
+        return { ...token, ...user, ...userToken }
+      }
       return { ...token, ...user }
     },
     async session({
