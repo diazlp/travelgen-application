@@ -1,11 +1,16 @@
+import { Toaster } from 'react-hot-toast'
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { Formik, Form } from 'formik'
+import useRegisterForm from '@/hooks/register/useRegisterForm'
 import Layout from '@/components/layout'
 import Button from '@/components/button'
-import Input from '@/components/input'
+import FormikInput from '@/components/formik-input'
 
 export default function RegisterContainer(): React.ReactNode {
+  const { initialValues, onSubmit, validate } = useRegisterForm()
+
   return (
     <Layout noFooter>
       <div className="flex justify-between">
@@ -34,37 +39,58 @@ export default function RegisterContainer(): React.ReactNode {
             </Link>
           </div>
 
-          <form className="flex flex-col mt-8">
-            <Input
-              label="Full Name"
-              type="text"
-              name="FullName"
-              placeholder="Enter your Fullname"
-              className="mb-6"
-            />
+          <Formik
+            initialValues={initialValues}
+            onSubmit={onSubmit}
+            validate={validate}
+          >
+            {({ isSubmitting, errors, status }) => (
+              <Form className="flex flex-col mt-8">
+                <FormikInput
+                  label="Full Name"
+                  type="text"
+                  name="fullName"
+                  placeholder="Enter your Fullname"
+                  className="mb-6"
+                  error={errors['fullName']}
+                />
 
-            <Input
-              label="Email"
-              type="email"
-              name="Email"
-              placeholder="Enter your email"
-              className="mb-6"
-            />
+                <FormikInput
+                  label="Email"
+                  type="email"
+                  name="email"
+                  placeholder="Enter your email"
+                  className="mb-6"
+                  error={errors['email']}
+                />
 
-            <Input
-              label="Password"
-              type="password"
-              name="Password"
-              placeholder="Enter your password"
-              className="mb-6"
-            />
+                <FormikInput
+                  label="Password"
+                  type="password"
+                  name="password"
+                  placeholder="Enter your password"
+                  error={errors['password']}
+                />
 
-            <Button type="submit" isFullWidth>
-              Register
-            </Button>
-          </form>
+                <span className="text-heading-5 font-label font-bold w-full text-center text-xs text-red-100 my-3">
+                  {status}
+                </span>
+
+                {isSubmitting ? (
+                  <Button type="submit" isFullWidth isDisabled>
+                    Registering...
+                  </Button>
+                ) : (
+                  <Button type="submit" isFullWidth>
+                    Register
+                  </Button>
+                )}
+              </Form>
+            )}
+          </Formik>
         </div>
       </div>
+      <Toaster />
     </Layout>
   )
 }

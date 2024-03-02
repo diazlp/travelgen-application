@@ -1,5 +1,5 @@
 import { FastifyRequest, FastifyReply, FastifyInstance } from 'fastify';
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient, Prisma } from '@prisma/client';
 import { DEFAULT_AVATAR } from '../../lib/constants';
 import MailService from '../../src/mail/mail.service';
 
@@ -100,6 +100,13 @@ export default class AuthService {
 
       return reply.status(201).send({ message: 'Register successful' });
     } catch (error) {
+      if (error instanceof Prisma.PrismaClientKnownRequestError) {
+        if (error.code === 'P2002') {
+          return reply
+            .status(500)
+            .send({ code: 'P2002', message: 'Unique constraint violation.' });
+        }
+      }
       return reply.status(500).send({ message: 'Internal server error.' });
     }
   }
