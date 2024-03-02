@@ -2,7 +2,6 @@ import NextAuth, {
   Account,
   CookiesOptions,
   NextAuthOptions,
-  Profile,
   Session,
   User
 } from 'next-auth'
@@ -69,7 +68,7 @@ export const authOptions: NextAuthOptions = {
     strategy: 'jwt'
   },
   callbacks: {
-    async signIn({ account, profile }): Promise<any> {
+    async signIn({ account, profile }): Promise<boolean> {
       if (account?.provider === 'google') {
         await fetch(`${process.env.BASE_API_URL}/v1.0/auth/register`, {
           method: 'POST',
@@ -91,7 +90,7 @@ export const authOptions: NextAuthOptions = {
       token,
       user
     }: {
-      account: any
+      account: Account | null
       token: JWT
       user?: User
     }): Promise<JWT> {

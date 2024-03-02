@@ -110,4 +110,56 @@ export default class AuthService {
       return reply.status(500).send({ message: 'Internal server error.' });
     }
   }
+
+  static async profileHandler(
+    request: FastifyRequest<{
+      Body: {
+        fullName: string;
+        email: string;
+        role: string;
+        isVerified: boolean;
+        verificationCode: string;
+      };
+    }>,
+    reply: FastifyReply,
+  ): Promise<any> {
+    const { email } = request.body;
+
+    try {
+      const userProfile = await prisma.user.findUniqueOrThrow({
+        where: {
+          email,
+        },
+        select: {
+          id: true,
+          email: true,
+          full_name: true,
+          role: true,
+          is_verified: true,
+          verification_code: true,
+          created_at: true,
+          profile: {
+            select: {
+              avatar: true,
+              date_of_birth: true,
+              location: true,
+              biography: true,
+              interests: true,
+            },
+          },
+        },
+      });
+
+      return reply.status(200).send(userProfile);
+    } catch (error) {
+      if (error instanceof Prisma.PrismaClientKnownRequestError) {
+        if (error.code === 'P2025') {
+          return reply
+            .status(500)
+            .send({ code: 'P2025', message: 'No user found.' });
+        }
+      }
+      return reply.status(500).send({ message: 'Internal server error.' });
+    }
+  }
 }

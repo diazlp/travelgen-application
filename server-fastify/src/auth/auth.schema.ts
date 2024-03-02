@@ -4,12 +4,6 @@ export const loginSchema: FastifySchema = {
   tags: ['Auth'],
   summary: 'User login endpoint',
   description: 'Returns user login credentials',
-  // security: [
-  //   {
-  //     ApiToken: [],
-  //     Oauth2Token: [],
-  //   },
-  // ],
   body: {
     type: 'object',
     properties: {
@@ -23,6 +17,7 @@ export const loginSchema: FastifySchema = {
   },
   response: {
     200: {
+      description: 'Login success',
       type: 'object',
       properties: {
         token: { type: 'string' },
@@ -34,6 +29,7 @@ export const loginSchema: FastifySchema = {
       },
     },
     401: {
+      description: 'Incorrect credentials',
       type: 'object',
       properties: {
         message: { type: 'string' },
@@ -48,11 +44,6 @@ export const loginSchema: FastifySchema = {
 export const registerSchema: FastifySchema = {
   tags: ['Auth'],
   summary: 'User register endpoint',
-  // security: [
-  //   {
-  //     ApiToken: [],
-  //   },
-  // ],
   body: {
     type: 'object',
     properties: {
@@ -69,6 +60,7 @@ export const registerSchema: FastifySchema = {
   },
   response: {
     201: {
+      description: 'Register success',
       type: 'object',
       properties: {
         token: { type: 'string' },
@@ -78,14 +70,68 @@ export const registerSchema: FastifySchema = {
         message: 'Register successful',
       },
     },
-    // 401: {
-    //   type: 'object',
-    //   properties: {
-    //     message: { type: 'string' },
-    //   },
-    //   example: {
-    //     message: 'Incorrect email and/or password',
-    //   },
-    // },
+  },
+};
+
+export const profileSchema: FastifySchema = {
+  tags: ['Auth'],
+  summary: 'User profile endpoint',
+  security: [
+    {
+      ApiToken: [],
+    },
+  ],
+  response: {
+    200: {
+      description: 'User profile',
+      type: 'object',
+      properties: {
+        id: { type: 'number' },
+        email: { type: 'string' },
+        full_name: { type: 'string' },
+        role: { type: 'string' },
+        is_verified: { type: 'boolean' },
+        verification_code: { type: 'string' },
+        created_at: { type: 'string', format: 'date' },
+        profile: {
+          type: 'object',
+          properties: {
+            avatar: { type: 'string' },
+            date_of_birth: { type: 'string', format: 'date' },
+            location: { type: 'string' },
+            biography: { type: 'string' },
+            interests: { type: 'array', items: { type: 'string' } },
+          },
+        },
+      },
+      example: {
+        id: 1,
+        email: 'diazlinggaputra@gmail.com',
+        full_name: 'Diaz Linggaputra',
+        role: 'User',
+        is_verified: true,
+        verification_code: 'abcde',
+        created_at: new Date(),
+        profile: {
+          avatar:
+            'https://diazlinggaputra.vercel.app/_next/image?url=%2Fassets%2Fimages%2Fdiazlp-photo.png&w=384&q=75',
+          date_of_birth: new Date('1997-05-23'),
+          location: 'Indonesia',
+          biography:
+            'When I grow up, I want to visit 300 countries. But now I am still young',
+          interests: ['Asia'],
+        },
+      },
+    },
+    401: {
+      description: 'Unauthorized',
+      type: 'object',
+      properties: {
+        message: { type: 'string' },
+      },
+      example: {
+        message: 'Unauthorized.',
+      },
+    },
   },
 };

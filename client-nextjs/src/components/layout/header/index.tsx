@@ -1,11 +1,12 @@
 import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { useSession, signOut } from 'next-auth/react'
+import { useSession } from 'next-auth/react'
 import Container from '../../container'
 // import Search from './search'
 import Navigation from './navigation'
 import Button from '@/components/button'
+import Avatar from '@/components/avatar'
 
 export default function Header(): React.ReactNode {
   const { data: session } = useSession()
@@ -33,17 +34,7 @@ export default function Header(): React.ReactNode {
           <div className="flex items-center gap-5">
             <Navigation />
             {session?.user ? (
-              <Button
-                className="w-[190px]"
-                props={{
-                  onClick: () =>
-                    signOut({
-                      redirect: false
-                    })
-                }}
-              >
-                Logout
-              </Button>
+              <Avatar />
             ) : (
               <Link href="/login">
                 <Button className="w-[190px]">Login</Button>

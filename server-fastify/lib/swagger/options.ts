@@ -58,28 +58,23 @@ export const swaggerOptions: FastifyDynamicSwaggerOptions = {
     },
     securityDefinitions: {
       ApiToken: {
-        description: 'Authorization header token, sample: "Bearer #TOKEN#"',
+        description: 'Authorization header token, sample: "#TOKEN"',
         type: 'apiKey',
         name: 'Authorization',
         in: 'header',
       },
-      Oauth2Token: {
-        description: 'OAUTH2',
-        type: 'oauth2',
-        flow: 'accessCode',
-        authorizationUrl: 'https://example.com/oauth/authorize',
-        tokenUrl: 'https://example.com/oauth/token',
-        scopes: {
-          read: 'Grants read access',
-          foo: 'Grants foao scope',
-        },
-      },
+      // Oauth2Token: {
+      //   description: 'OAUTH2',
+      //   type: 'oauth2',
+      //   flow: 'accessCode',
+      //   authorizationUrl: 'https://example.com/oauth/authorize',
+      //   tokenUrl: 'https://example.com/oauth/token',
+      //   scopes: {
+      //     read: 'Grants read access',
+      //     foo: 'Grants foao scope',
+      //   },
+      // },
     },
-    // security: [
-    //   {
-    //     ApiToken: [],
-    //   },
-    // ],
   },
 };
 

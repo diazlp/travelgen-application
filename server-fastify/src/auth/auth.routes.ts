@@ -4,7 +4,8 @@ import {
   FastifyRequest,
   FastifyReply,
 } from 'fastify';
-import { loginSchema, registerSchema } from './auth.schema';
+import { loginSchema, registerSchema, profileSchema } from './auth.schema';
+import Middleware from '../middleware';
 import AuthService from './auth.service';
 
 export function authRoutes(
@@ -35,6 +36,20 @@ export function authRoutes(
     handler: (request: FastifyRequest<any>, reply: FastifyReply) => {
       AuthService.registerHandler(fastify, request, reply);
     },
+  });
+
+  fastify.route({
+    method: 'GET',
+    url: '/auth/profile',
+    schema: profileSchema,
+    preHandler: (
+      request: FastifyRequest<any>,
+      reply: FastifyReply,
+      done: DoneFuncWithErrOrRes,
+    ) => {
+      Middleware.verifyToken(fastify, request, reply, done);
+    },
+    handler: AuthService.profileHandler,
   });
 
   done();
