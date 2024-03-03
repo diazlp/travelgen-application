@@ -34,8 +34,8 @@ export default class Middleware {
       // Verify the token using Fastify JWT
       const decodedToken = fastify.jwt.verify(token);
 
-      // Attach the decoded token to the request body
-      request.body = decodedToken;
+      // Attach the decoded token to the request headers
+      request.headers.authorization = JSON.stringify(decodedToken);
     } catch (error) {
       // Send 401 Unauthorized response if token is invalid
       return reply.status(401).send({ message: 'Unauthorized.' });

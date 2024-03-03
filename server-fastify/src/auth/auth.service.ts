@@ -113,17 +113,13 @@ export default class AuthService {
 
   static async profileHandler(
     request: FastifyRequest<{
-      Body: {
-        fullName: string;
+      Headers: {
         email: string;
-        role: string;
-        isVerified: boolean;
-        verificationCode: string;
       };
     }>,
     reply: FastifyReply,
   ): Promise<any> {
-    const { email } = request.body;
+    const { email } = JSON.parse(request.headers.authorization);
 
     try {
       const userProfile = await prisma.user.findUniqueOrThrow({
@@ -170,6 +166,50 @@ export default class AuthService {
       });
 
       return reply.status(200).send(userProfile);
+    } catch (error) {
+      if (error instanceof Prisma.PrismaClientKnownRequestError) {
+        if (error.code === 'P2025') {
+          return reply
+            .status(500)
+            .send({ code: 'P2025', message: 'No user found.' });
+        }
+      }
+      return reply.status(500).send({ message: 'Internal server error.' });
+    }
+  }
+
+  static async updateProfileHandler(
+    request: FastifyRequest<{
+      Body: {
+        full_name: string;
+        location: string;
+        biography: string;
+      };
+    }>,
+    reply: FastifyReply,
+  ): Promise<any> {
+    const { email } = JSON.parse(request.headers.authorization);
+    const { full_name, location, biography } = request.body;
+
+    try {
+      const updatedUser = await prisma.user.update({
+        where: {
+          email,
+        },
+        data: {
+          full_name,
+          profile: {
+            update: {
+              location,
+              biography,
+            },
+          },
+        },
+      });
+
+      console.log(updatedUser, '<<<ini apa ya');
+
+      return reply.status(200).send({ message: 'Profile has been updated' });
     } catch (error) {
       if (error instanceof Prisma.PrismaClientKnownRequestError) {
         if (error.code === 'P2025') {

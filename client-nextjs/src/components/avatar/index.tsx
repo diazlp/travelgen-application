@@ -59,7 +59,7 @@ export default function Avatar(): React.ReactNode {
             props={{
               onClick: async () => {
                 await signOut({ redirect: false })
-                router.push('/')
+                router.push('/login')
               }
             }}
           >
