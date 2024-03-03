@@ -29,7 +29,7 @@ export const profilesData: IProfileModel[] = [
     avatar:
       'https://images.unsplash.com/photo-1520466809213-7b9a56adcd45?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80',
     date_of_birth: new Date(),
-    location: 'Indonesia',
+    location: 'Malaysia',
     biography:
       'Give me some money, and I will buy you a bowl of meatball. Give me ten money, and I will buy you the whole world',
     interests: ['Asia'],
@@ -51,7 +51,7 @@ export const profilesData: IProfileModel[] = [
     avatar:
       'https://media-exp1.licdn.com/dms/image/C5603AQHt2saL1yb0YA/profile-displayphoto-shrink_200_200/0/1642204136772?e=2147483647&v=beta&t=ULEptecLgNpYvi9ogfHNwXBFOIjf-LVG5NRL9OBEscM',
     date_of_birth: new Date(),
-    location: 'Italy',
+    location: 'Indonesia',
     biography:
       'When I grow up, I want to visit 300 countries. But now I am still young',
     interests: ['Asia'],

@@ -103,6 +103,29 @@ export const profileSchema: FastifySchema = {
             interests: { type: 'array', items: { type: 'string' } },
           },
         },
+        transactions: {
+          type: 'array',
+          items: {
+            type: 'object',
+            properties: {
+              quantity: { type: 'number' },
+              is_paid: { type: 'boolean' },
+              checkout_at: { type: 'string', format: 'date' },
+              package: {
+                type: 'object',
+                properties: {
+                  name: { type: 'string' },
+                  country: { type: 'string' },
+                  thumbnail: { type: 'string' },
+                  description: { type: 'string' },
+                  departure_date: { type: 'string', format: 'date' },
+                  rating: { type: 'number' },
+                  reviewers: { type: 'number' },
+                },
+              },
+            },
+          },
+        },
       },
       example: {
         id: 1,
@@ -121,6 +144,24 @@ export const profileSchema: FastifySchema = {
             'When I grow up, I want to visit 300 countries. But now I am still young',
           interests: ['Asia'],
         },
+        transactions: [
+          {
+            quantity: 1,
+            is_paid: true,
+            checkout_at: new Date('2023-04-01'),
+            package: {
+              name: 'Mount Bromo, Malang',
+              country: 'Indonesia',
+              thumbnail:
+                'https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=871&q=80',
+              description:
+                'Embark on an adventure to Mount Bromo, Malang with a package for 2 including flights, 5 nights accommodation, guided tours, meals, off-road experience, and transportation.',
+              departure_date: new Date('2023-09-16'),
+              rating: 4,
+              reviewers: 1600,
+            },
+          },
+        ],
       },
     },
     401: {

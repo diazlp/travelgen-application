@@ -15,7 +15,7 @@ export const packagesData: IPackageModel[] = [
       'https://images.unsplash.com/photo-1548585742-1df49e753a83?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=877&q=80',
     ],
     description:
-      'Untuk 1 orang, tiket pesawat, penginapan 5 malam, tour guide, makan siang, makan malam, transportasi, travel, snorkeling',
+      'Explore the Colosseum in Rome, Italy, with this inclusive package featuring airfare, 5-night accommodation, guided tours, meals, transportation, and snorkeling adventures.',
     departure_date: '2024-08-19T00:00:00.000Z',
     rating: 4.6,
     reviewers: 1242,
@@ -35,7 +35,7 @@ export const packagesData: IPackageModel[] = [
       'https://images.unsplash.com/photo-1621502893269-79672a3069dd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80',
     ],
     description:
-      'Untuk 1 orang, tiket pesawat, penginapan 2 malam, tour guide, makan siang, makan malam, transportasi, travel, snorkeling',
+      'Experience Gwanghwamun Gate in Seoul, South Korea, with this comprehensive package including airfare, 2-night accommodation, and guided tours.',
     departure_date: '2025-05-23T00:00:00.000Z',
     rating: 4.7,
     reviewers: 1302,
@@ -55,7 +55,7 @@ export const packagesData: IPackageModel[] = [
       'https://images.unsplash.com/photo-1577714593386-295e569b4751?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80',
     ],
     description:
-      'Untuk 1 orang, tiket pesawat, penginapan 2 malam, tour guide, makan siang, makan malam, transportasi, travel, snorkeling',
+      'Discover Nusa Penida in Bali, Indonesia, with this all-inclusive package offering airfare, 2-night accommodation, guided tours, meals, transportation, and snorkeling excursions.',
     departure_date: '2024-07-04T00:00:00.000Z',
     rating: 4.8,
     reviewers: 2503,
@@ -75,7 +75,7 @@ export const packagesData: IPackageModel[] = [
       'https://images.unsplash.com/photo-1566559532224-6d65e9fc0f37?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1031&q=80',
     ],
     description:
-      'Untuk 1 orang, tiket pesawat, penginapan 5 malam, tour guide, makan siang, makan malam, transportasi',
+      'Experience the majesty of Borobudur, Yogyakarta with a comprehensive package including flights, 5 nights accommodation, guided tours, meals, and transportation.',
     departure_date: '2024-02-24T00:00:00.000Z',
     rating: 4.7,
     reviewers: 2103,
@@ -95,7 +95,7 @@ export const packagesData: IPackageModel[] = [
       'https://images.unsplash.com/photo-1626515400076-832a6143b894?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=876&q=80',
     ],
     description:
-      'Untuk 2 orang, tiket pesawat, penginapan 5 malam, tour guide, makan siang, makan malam, transportasi, off-road',
+      'Embark on an adventure to Mount Bromo, Malang with a package for 2 including flights, 5 nights accommodation, guided tours, meals, off-road experience, and transportation.',
     departure_date: '2023-09-16T00:00:00.000Z',
     rating: 4.6,
     reviewers: 1600,
@@ -115,7 +115,7 @@ export const packagesData: IPackageModel[] = [
       'https://images.unsplash.com/photo-1570939274717-7eda259b50ed?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
     ],
     description:
-      'Untuk 1 orang, tiket pesawat, penginapan 5 malam, tour guide, makan siang, makan malam, transportasi, off-road',
+      'Indulge in the iconic Eiffel Tower, Paris with a solo package featuring flights, 5 nights accommodation, guided tours, meals, off-road experience, and transportation.',
     departure_date: '2023-07-15T00:00:00.000Z',
     rating: 4.9,
     reviewers: 640,

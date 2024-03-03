@@ -147,6 +147,24 @@ export default class AuthService {
               interests: true,
             },
           },
+          transactions: {
+            select: {
+              quantity: true,
+              is_paid: true,
+              checkout_at: true,
+              package: {
+                select: {
+                  name: true,
+                  country: true,
+                  thumbnail: true,
+                  description: true,
+                  departure_date: true,
+                  rating: true,
+                  reviewers: true,
+                },
+              },
+            },
+          },
         },
       });
 

@@ -24,7 +24,7 @@ model User {
   created_at        DateTime      @default(now()) @db.Date
   updated_at        DateTime      @default(now()) @db.Date
   profile           Profile?
-  Transaction       Transaction[]
+  transactions      Transaction[]
 }
 
 model Profile {
@@ -47,12 +47,12 @@ model Package {
   images         String[]
   description    String       @db.VarChar(1000)
   departure_date DateTime
-  rating         Int
+  rating         Int          
   reviewers      Int
   is_promo       Boolean      @default(false)
   created_at     DateTime     @default(now()) @db.Date
   updated_at     DateTime     @default(now()) @db.Date
-  transactions    Transaction[] 
+  transactions   Transaction[] 
 }
 
 model Transaction {
