@@ -10,7 +10,7 @@ interface IPackageResponse {
   reviewers: number
 }
 
-interface ITransactionResponse {
+export interface ITransactionResponse {
   quantity: number
   is_paid: boolean
   checkout_at: Date

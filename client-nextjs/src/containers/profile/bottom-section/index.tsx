@@ -1,7 +1,8 @@
 import React from 'react'
-import Image from 'next/image'
 import { IUserResponse } from '@/hooks/profile/useProfileFetcher'
 import Container from '@/components/container'
+import SectionTab from './section-tab'
+import HistoryCard from './history-card'
 
 interface BottomSectionProps {
   profileData: IUserResponse
@@ -12,22 +13,32 @@ export default function BottomSection({
   profileData,
   loading
 }: BottomSectionProps): React.ReactNode {
+  if (loading) {
+    return <></>
+  }
+
   return (
     <Container>
-      <div className="flex flex-row gap-14 justify-center text-gray-70 cursor-pointer">
-        <button
-          type="button"
-          className="font-bold hover:border-blue-100 hover:text-blue-100 focus:text-blue-100 focus:underline"
-        >
-          Riwayat Perjalanan
-        </button>
-        <button
-          type="button"
-          className="font-bold hover:border-blue-100 hover:text-blue-100 focus:text-blue-100 focus:underline"
-        >
-          Favorit
-        </button>
-      </div>
+      <section className="flex flex-col select-none">
+        <div className="flex flex-row gap-14 justify-center text-gray-70 cursor-pointer">
+          <SectionTab>Travel Histories</SectionTab>
+          <SectionTab>Favorites</SectionTab>
+        </div>
+
+        <div>
+          {!profileData.transactions.length ? (
+            <p className="text-heading-4 text-blue-100 text-center font-bold font-label my-40">
+              You have never traveled with us
+            </p>
+          ) : (
+            <div className="flex flex-row gap-10 my-10">
+              {profileData.transactions.map((transaction) => (
+                <HistoryCard history={transaction} />
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
     </Container>
   )
 }

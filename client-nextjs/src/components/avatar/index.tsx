@@ -57,7 +57,10 @@ export default function Avatar(): React.ReactNode {
           </AvatarItem>
           <AvatarItem
             props={{
-              onClick: () => signOut({ redirect: false })
+              onClick: async () => {
+                await signOut({ redirect: false })
+                router.push('/')
+              }
             }}
           >
             <IoMdLogOut />

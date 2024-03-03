@@ -29,11 +29,11 @@ export default function TopSection({
         />
 
         <div className="flex absolute bottom-0 right-1/2 translate-y-1/2 translate-x-1/2">
-          <figure className="focus:outline-none h-28 w-28">
+          <figure className="h-28 w-28 object-center">
             <Image
               src={profileData.profile.avatar}
               alt={profileData.full_name}
-              className="rounded-full shadow-lg"
+              className="rounded-full shadow-lg object-cover object-center"
               fill
             />
           </figure>
