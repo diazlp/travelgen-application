@@ -1,9 +1,9 @@
 import React from 'react'
 import Image from 'next/image'
 import { IUserResponse } from '@/hooks/profile/useProfileFetcher'
+import Button from '@/components/button'
 
 import backgroundImage from '/public/assets/home/bromo.jpg'
-import Button from '@/components/button'
 
 interface TopSectionProps {
   profileData: IUserResponse

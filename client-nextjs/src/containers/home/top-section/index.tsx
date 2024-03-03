@@ -28,7 +28,7 @@ export default function TopSection(): React.ReactNode {
     }, 8000)
 
     return () => clearInterval(interval)
-  }, [])
+  }, [headerPhotos.length])
 
   return (
     <Container>
@@ -42,8 +42,8 @@ export default function TopSection(): React.ReactNode {
 
               <p className="text-heading-3 text-gray-70 w-[526px] mb-7">
                 Embark on the beautiful world with just one touch by booking
-                your ticket through TravelGen. You'll receive the best service
-                for your holiday travels anywhere, anytime
+                your ticket through TravelGen. You&apos;ll receive the best
+                service for your holiday travels anywhere, anytime
               </p>
 
               <Button className="w-[190px] text-white">See Packages</Button>

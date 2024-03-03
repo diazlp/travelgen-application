@@ -29,7 +29,7 @@ export default function LoginContainer(): React.ReactNode {
 
           <div className="flex mt-3">
             <p className="text-heading-5 text-gray-50 font-semibold">
-              Don't have an account?
+              Don&apos;t have an account?
             </p>
             <Link
               href="/register"

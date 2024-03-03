@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react'
+import Image from 'next/image'
 import Carousel from 'react-multi-carousel'
 import { promos } from '@/libs/constants'
 import { Package } from '@/libs/types/interface'
@@ -24,10 +25,11 @@ export default function PromoCarousel(): React.ReactNode {
             aria-label="Go to next slide"
             className="absolute z-50 right-0 opacity-50 hover:opacity-100"
           >
-            <img
+            <Image
               src="/assets/icons/right-arrow-rounded.svg"
-              height="75"
-              width="75"
+              alt="carousel-right-arrow"
+              height={75}
+              width={75}
             />
           </button>
         }
@@ -37,10 +39,11 @@ export default function PromoCarousel(): React.ReactNode {
             aria-label="Go to previous slide"
             className="absolute z-50 left-0 opacity-50 hover:opacity-100"
           >
-            <img
+            <Image
               src="/assets/icons/left-arrow-rounded.svg"
-              height="75"
-              width="75"
+              alt="carousel-left-arrow"
+              height={75}
+              width={75}
             />
           </button>
         }
