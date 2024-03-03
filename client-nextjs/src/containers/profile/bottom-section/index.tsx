@@ -26,8 +26,8 @@ export default function BottomSection({
             </p>
           ) : (
             <div className="grid grid-cols-3 gap-10 my-10">
-              {profileData.transactions.map((transaction) => (
-                <HistoryCard history={transaction} />
+              {profileData.transactions.map((transaction, index) => (
+                <HistoryCard key={index} history={transaction} />
               ))}
             </div>
           )}

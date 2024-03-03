@@ -95,20 +95,6 @@ const useRegisterForm = (): FormikConfig<FormValues> => {
     return errors
   }
 
-  useEffect(() => {
-    // Example: Fetch initial data when component mounts
-    // const fetchData = async () => {
-    //   try {
-    //     const response = await fetch('https://example.com/initialData')
-    //     const data = await response.json()
-    //     console.log('Initial data:', data)
-    //   } catch (error: any) {
-    //     console.error('Error fetching initial data:', error.message)
-    //   }
-    // }
-    // fetchData()
-  }, []) // Run only once when component mounts
-
   return {
     initialValues,
     onSubmit,

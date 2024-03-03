@@ -54,6 +54,7 @@ export default function LoginContainer(): React.ReactNode {
                   className="mb-6"
                   error={errors['email']}
                 />
+
                 <FormikInput
                   label="Password"
                   type="password"

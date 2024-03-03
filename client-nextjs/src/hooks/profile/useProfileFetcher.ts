@@ -1,4 +1,4 @@
-import useSWR from 'swr'
+import useSWR, { KeyedMutator } from 'swr'
 
 interface IPackageResponse {
   name: string
@@ -44,15 +44,21 @@ async function profileFetcher() {
   return data
 }
 
-const useProfileFetcher = (): { profile: IUserResponse; loading: boolean } => {
-  const { data: profile, isLoading } = useSWR(
-    '/api/auth/profile',
-    profileFetcher
-  )
+const useProfileFetcher = (): {
+  profile: IUserResponse
+  loading: boolean
+  mutate: KeyedMutator<any>
+} => {
+  const {
+    data: profile,
+    isLoading,
+    mutate
+  } = useSWR('/api/auth/profile', profileFetcher)
 
   return {
     profile,
-    loading: isLoading
+    loading: isLoading,
+    mutate
   }
 }
 
