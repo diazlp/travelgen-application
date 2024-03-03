@@ -77,11 +77,16 @@ export default function RegisterContainer(): React.ReactNode {
                 </span>
 
                 {isSubmitting ? (
-                  <Button type="submit" isFullWidth isDisabled>
+                  <Button
+                    type="submit"
+                    isFullWidth
+                    isDisabled
+                    className="text-white"
+                  >
                     Registering...
                   </Button>
                 ) : (
-                  <Button type="submit" isFullWidth>
+                  <Button type="submit" isFullWidth className="text-white">
                     Register
                   </Button>
                 )}

@@ -49,10 +49,10 @@ export default function PromoCard({
         </p>
 
         <div className="flex justify-between gap-3">
-          <Button isFullWidth isOutlined className="text-heading-5">
+          <Button isFullWidth isOutlined className="text-heading-5 text-white">
             See detail
           </Button>
-          <Button isFullWidth className="text-heading-5">
+          <Button isFullWidth className="text-heading-5 text-white">
             Order
           </Button>
         </div>

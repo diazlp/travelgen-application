@@ -30,11 +30,11 @@ export default function Button({
       type={type}
       className={`
         ${styles.button} 
-        ${className}
         ${isFullWidth ? styles.fullWidth : ''} 
         ${isOutlined ? styles.outlined : ''}
         ${variant === 'primary' ? 'bg-blue-100' : 'bg-red-100'}
         ${isDisabled ? 'bg-blue-30 cursor-not-allowed' : null}
+        ${className}
         `}
       {...props}
     >

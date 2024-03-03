@@ -1,6 +1,23 @@
 import useSWR from 'swr'
 
-interface IProfile {
+interface IPackageResponse {
+  name: string
+  country: string
+  thumbnail: string
+  description: string
+  departure_date: Date
+  rating: number
+  reviewers: number
+}
+
+interface ITransactionResponse {
+  quantity: number
+  is_paid: boolean
+  checkout_at: Date
+  package: IPackageResponse
+}
+
+interface IProfileResponse {
   avatar: string
   date_of_birth: Date
   location: string
@@ -8,7 +25,7 @@ interface IProfile {
   interests: string[]
 }
 
-interface IUser {
+export interface IUserResponse {
   id: number
   email: string
   full_name: string
@@ -16,7 +33,8 @@ interface IUser {
   is_verified: boolean
   verification_code: string
   created_at: Date
-  profile: IProfile
+  profile: IProfileResponse
+  transactions: ITransactionResponse[]
 }
 
 async function profileFetcher() {
@@ -26,11 +44,15 @@ async function profileFetcher() {
   return data
 }
 
-const useProfileFetcher = (): { profile: IUser } => {
-  const { data: profile } = useSWR('/api/auth/profile', profileFetcher)
+const useProfileFetcher = (): { profile: IUserResponse; loading: boolean } => {
+  const { data: profile, isLoading } = useSWR(
+    '/api/auth/profile',
+    profileFetcher
+  )
 
   return {
-    profile
+    profile,
+    loading: isLoading
   }
 }
 

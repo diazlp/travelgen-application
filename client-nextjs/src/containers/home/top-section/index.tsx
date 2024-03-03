@@ -13,8 +13,6 @@ import headerPhoto6 from '/public/assets/home/header-6.png'
 
 export default function TopSection(): React.ReactNode {
   const [currentImageIndex, setCurrentImageIndex] = useState<number>(0)
-  const [fadeIn, setFadeIn] = useState<boolean>(true)
-
   const headerPhotos = [
     headerPhoto1,
     headerPhoto2,
@@ -48,7 +46,7 @@ export default function TopSection(): React.ReactNode {
                 for your holiday travels anywhere, anytime
               </p>
 
-              <Button className="w-[190px]">See Packages</Button>
+              <Button className="w-[190px] text-white">See Packages</Button>
             </div>
           </div>
 

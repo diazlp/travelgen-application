@@ -74,11 +74,16 @@ export default function LoginContainer(): React.ReactNode {
                 </a>
 
                 {isSubmitting ? (
-                  <Button type="submit" isFullWidth isDisabled>
+                  <Button
+                    type="submit"
+                    isFullWidth
+                    isDisabled
+                    className="text-white"
+                  >
                     Logging in...
                   </Button>
                 ) : (
-                  <Button type="submit" isFullWidth>
+                  <Button type="submit" isFullWidth className="text-white">
                     Login
                   </Button>
                 )}
@@ -94,7 +99,7 @@ export default function LoginContainer(): React.ReactNode {
 
           <Button
             variant="google"
-            className="flex items-center gap-2 justify-center"
+            className="flex items-center gap-2 justify-center text-white"
             props={{
               onClick: () => signIn('google')
             }}

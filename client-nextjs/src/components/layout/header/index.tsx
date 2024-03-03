@@ -37,7 +37,7 @@ export default function Header(): React.ReactNode {
               <Avatar />
             ) : (
               <Link href="/login">
-                <Button className="w-[190px]">Login</Button>
+                <Button className="w-[190px] text-white">Login</Button>
               </Link>
             )}
           </div>
