@@ -7,17 +7,11 @@ import backgroundImage from '/public/assets/home/bromo.jpg'
 
 interface TopSectionProps {
   profileData: IUserResponse
-  loading: boolean
 }
 
 export default function TopSection({
-  profileData,
-  loading
+  profileData
 }: TopSectionProps): React.ReactNode {
-  if (loading) {
-    return <></>
-  }
-
   return (
     <div className="h-[650px] flex flex-col gap-20 select-none">
       <section className="relative">

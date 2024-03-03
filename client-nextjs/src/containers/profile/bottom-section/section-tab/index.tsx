@@ -8,7 +8,7 @@ export default function SectionTab({
   return (
     <button
       type="button"
-      className="font-bold hover:border-blue-100 hover:text-blue-100 focus:text-blue-100 focus:underline"
+      className="font-bold text-blue-100 underline hover:text-blue-100 focus:text-blue-100 focus:underline"
     >
       {children}
     </button>

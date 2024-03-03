@@ -154,6 +154,7 @@ export default class AuthService {
               checkout_at: true,
               package: {
                 select: {
+                  id: true,
                   name: true,
                   country: true,
                   thumbnail: true,

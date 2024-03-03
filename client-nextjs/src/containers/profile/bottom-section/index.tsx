@@ -6,23 +6,17 @@ import HistoryCard from './history-card'
 
 interface BottomSectionProps {
   profileData: IUserResponse
-  loading: boolean
 }
 
 export default function BottomSection({
-  profileData,
-  loading
+  profileData
 }: BottomSectionProps): React.ReactNode {
-  if (loading) {
-    return <></>
-  }
-
   return (
     <Container>
       <section className="flex flex-col select-none">
         <div className="flex flex-row gap-14 justify-center text-gray-70 cursor-pointer">
           <SectionTab>Travel Histories</SectionTab>
-          <SectionTab>Favorites</SectionTab>
+          {/* <SectionTab>Favorites</SectionTab> */}
         </div>
 
         <div>
@@ -31,7 +25,7 @@ export default function BottomSection({
               You have never traveled with us
             </p>
           ) : (
-            <div className="flex flex-row gap-10 my-10">
+            <div className="grid grid-cols-3 gap-10 my-10">
               {profileData.transactions.map((transaction) => (
                 <HistoryCard history={transaction} />
               ))}

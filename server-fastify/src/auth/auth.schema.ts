@@ -114,6 +114,7 @@ export const profileSchema: FastifySchema = {
               package: {
                 type: 'object',
                 properties: {
+                  id: { type: 'number' },
                   name: { type: 'string' },
                   country: { type: 'string' },
                   thumbnail: { type: 'string' },
@@ -150,6 +151,7 @@ export const profileSchema: FastifySchema = {
             is_paid: true,
             checkout_at: new Date('2023-04-01'),
             package: {
+              id: 1,
               name: 'Mount Bromo, Malang',
               country: 'Indonesia',
               thumbnail:

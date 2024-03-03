@@ -43,11 +43,7 @@ export default function HistoryCard({
         </p>
 
         <div className="flex justify-between gap-3">
-          <Button
-            isFullWidth
-            isOutlined
-            // v-on:click="detailClickHandler(history?.Package?.id)"
-          >
+          <Button isFullWidth isOutlined>
             Lihat detail
           </Button>
         </div>
