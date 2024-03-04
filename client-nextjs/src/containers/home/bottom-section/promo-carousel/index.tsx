@@ -23,7 +23,7 @@ export default function PromoCarousel(): React.ReactNode {
           <button
             type="button"
             aria-label="Go to next slide"
-            className="absolute z-50 right-0 opacity-50 hover:opacity-100"
+            className="absolute z-20 right-0 opacity-50 hover:opacity-100"
           >
             <Image
               src="/assets/icons/right-arrow-rounded.svg"
@@ -37,7 +37,7 @@ export default function PromoCarousel(): React.ReactNode {
           <button
             type="button"
             aria-label="Go to previous slide"
-            className="absolute z-50 left-0 opacity-50 hover:opacity-100"
+            className="absolute z-20 left-0 opacity-50 hover:opacity-100"
           >
             <Image
               src="/assets/icons/left-arrow-rounded.svg"

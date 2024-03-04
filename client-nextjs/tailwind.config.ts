@@ -16,10 +16,20 @@ const config: Config = {
           '30%': { opacity: '1' },
           '80%': { opacity: '1' },
           '100%': { opacity: '0' }
+        },
+        fadeInModal: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' }
+        },
+        fadeOutModal: {
+          '0%': { opacity: '1' },
+          '100%': { opacity: '0' }
         }
       },
       animation: {
-        fadeInHeader: 'fadeInHeader 8s ease-in-out'
+        fadeInHeader: 'fadeInHeader 8s ease-in-out',
+        fadeInModal: 'fadeInModal 0.5s',
+        fadeOutModal: 'fadeOutModal 0.5s'
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

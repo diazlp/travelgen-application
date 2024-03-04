@@ -192,7 +192,7 @@ export default class AuthService {
     const { full_name, location, biography } = request.body;
 
     try {
-      const updatedUser = await prisma.user.update({
+      await prisma.user.update({
         where: {
           email,
         },
@@ -206,8 +206,6 @@ export default class AuthService {
           },
         },
       });
-
-      console.log(updatedUser, '<<<ini apa ya');
 
       return reply.status(200).send({ message: 'Profile has been updated' });
     } catch (error) {

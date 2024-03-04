@@ -1,16 +1,26 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { signOut } from 'next-auth/react'
 import useProfileFetcher from '@/hooks/profile/useProfileFetcher'
-import { CiUser } from 'react-icons/ci'
+import { RiLockPasswordLine } from 'react-icons/ri'
+import { CiUser, CiCircleCheck } from 'react-icons/ci'
 import { IoMdLogOut } from 'react-icons/io'
 import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 import AvatarItem from './avatar-item'
+import FormikModal, { ModalType } from '../formik-modal'
 
 export default function Avatar(): React.ReactNode {
   const { profile: profileData, loading } = useProfileFetcher()
   const router = useRouter()
+
+  const [modalState, setModalState] = useState<{
+    visible: boolean
+    type?: ModalType
+  }>({
+    visible: false,
+    type: ModalType.Password
+  })
 
   if (loading) {
     return <AiOutlineLoading3Quarters className="animate-spin" />
@@ -28,7 +38,7 @@ export default function Avatar(): React.ReactNode {
           priority
         />
       </figure>
-      <ul className="bg-white border shadow-lg rounded-sm cursor-pointer transform scale-0 group-hover:scale-100 group-hover:-translate-x-3/4 group-hover:translate-y-1 absolute transition duration-300 ease-in-out origin-top min-w-56 z-10">
+      <ul className="bg-white border shadow-lg rounded-sm cursor-pointer transform scale-0 group-hover:scale-100 group-hover:-translate-x-3/4 group-hover:translate-y-1 group-hover:z-10 absolute transition duration-300 ease-in-out origin-top min-w-56">
         <li className="px-5 py-2 flex flex-row gap-3 items-center">
           <figure className="rounded-full overflow-hidden h-10 w-10 cursor-pointer select-none group inline-block">
             <Image
@@ -46,7 +56,25 @@ export default function Avatar(): React.ReactNode {
           </div>
         </li>
         <hr />
-        <li className="flex flex-col py-4 px-5 gap-4  font-sans text-md">
+        <li className="flex flex-col py-4 px-5 gap-4 font-sans text-md">
+          <AvatarItem
+            props={{
+              onClick: () =>
+                setModalState({ visible: true, type: ModalType.Password })
+            }}
+          >
+            <RiLockPasswordLine />
+            Change Password
+          </AvatarItem>
+          <AvatarItem
+            props={{
+              onClick: () =>
+                setModalState({ visible: true, type: ModalType.Verification })
+            }}
+          >
+            <CiCircleCheck />
+            Verify Email
+          </AvatarItem>
           <AvatarItem
             props={{
               onClick: () => router.push('/profile')
@@ -68,6 +96,7 @@ export default function Avatar(): React.ReactNode {
           </AvatarItem>
         </li>
       </ul>
+      <FormikModal modalState={modalState} setModalState={setModalState} />
     </div>
   )
 }
