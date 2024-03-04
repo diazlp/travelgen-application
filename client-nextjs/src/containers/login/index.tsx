@@ -6,7 +6,7 @@ import { signIn } from 'next-auth/react'
 import useLoginForm from '@/hooks/login/useLoginForm'
 import Layout from '@/components/layout'
 import Button from '@/components/button'
-import FormikInput from '@/components/formik-input'
+import Input from '@/components/input'
 
 export default function LoginContainer(): React.ReactNode {
   const { initialValues, onSubmit, validate } = useLoginForm()
@@ -46,7 +46,7 @@ export default function LoginContainer(): React.ReactNode {
           >
             {({ isSubmitting, errors, status }) => (
               <Form className="flex flex-col mt-8">
-                <FormikInput
+                <Input
                   label="Email"
                   type="email"
                   name="email"
@@ -55,7 +55,7 @@ export default function LoginContainer(): React.ReactNode {
                   error={errors['email']}
                 />
 
-                <FormikInput
+                <Input
                   label="Password"
                   type="password"
                   name="password"

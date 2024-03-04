@@ -6,7 +6,7 @@ import { Formik, Form } from 'formik'
 import useRegisterForm from '@/hooks/register/useRegisterForm'
 import Layout from '@/components/layout'
 import Button from '@/components/button'
-import FormikInput from '@/components/formik-input'
+import Input from '@/components/input'
 
 export default function RegisterContainer(): React.ReactNode {
   const { initialValues, onSubmit, validate } = useRegisterForm()
@@ -46,7 +46,7 @@ export default function RegisterContainer(): React.ReactNode {
           >
             {({ isSubmitting, errors, status }) => (
               <Form className="flex flex-col mt-8">
-                <FormikInput
+                <Input
                   label="Full Name"
                   type="text"
                   name="fullName"
@@ -55,7 +55,7 @@ export default function RegisterContainer(): React.ReactNode {
                   error={errors['fullName']}
                 />
 
-                <FormikInput
+                <Input
                   label="Email"
                   type="email"
                   name="email"
@@ -64,7 +64,7 @@ export default function RegisterContainer(): React.ReactNode {
                   error={errors['email']}
                 />
 
-                <FormikInput
+                <Input
                   label="Password"
                   type="password"
                   name="password"

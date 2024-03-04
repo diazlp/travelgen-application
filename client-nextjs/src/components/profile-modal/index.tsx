@@ -8,17 +8,17 @@ export enum ModalType {
   Verification = 'verification'
 }
 
-interface FormikModalProps {
+interface ProfileModalProps {
   modalState: { visible: boolean; type?: ModalType }
   setModalState: React.Dispatch<
     React.SetStateAction<{ visible: boolean; type?: ModalType }>
   >
 }
 
-export default function FormikModal({
+export default function ProfileModal({
   modalState,
   setModalState
-}: FormikModalProps): React.ReactNode {
+}: ProfileModalProps): React.ReactNode {
   if (modalState.visible) {
     return (
       <div className="fixed w-full h-100 inset-0 z-50 overflow-hidden flex justify-center items-center bg-black bg-opacity-70 animate-fadeInModal">

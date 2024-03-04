@@ -2,6 +2,8 @@ import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useSession } from 'next-auth/react'
+import useHealthChecker from '@/hooks/health/useHealthChecker'
+import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 import Container from '../../container'
 // import Search from './search'
 import Navigation from './navigation'
@@ -10,6 +12,7 @@ import Avatar from '@/components/avatar'
 
 export default function Header(): React.ReactNode {
   const { data: session } = useSession()
+  const { health } = useHealthChecker()
 
   return (
     <header className="h-[85px] bg-white shadow-lg p-4">
@@ -33,7 +36,9 @@ export default function Header(): React.ReactNode {
 
           <div className="flex items-center gap-5">
             <Navigation />
-            {session?.user ? (
+            {!health ? (
+              <AiOutlineLoading3Quarters className="animate-spin" />
+            ) : session?.user ? (
               <Avatar />
             ) : (
               <Link href="/login">

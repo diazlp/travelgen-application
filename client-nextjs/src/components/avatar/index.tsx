@@ -2,16 +2,19 @@ import React, { useState } from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { signOut } from 'next-auth/react'
+import useHealthChecker from '@/hooks/health/useHealthChecker'
 import useProfileFetcher from '@/hooks/profile/useProfileFetcher'
 import { RiLockPasswordLine } from 'react-icons/ri'
 import { CiUser, CiCircleCheck } from 'react-icons/ci'
 import { IoMdLogOut } from 'react-icons/io'
 import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 import AvatarItem from './avatar-item'
-import FormikModal, { ModalType } from '../formik-modal'
+import ProfileModal, { ModalType } from '../profile-modal'
 
 export default function Avatar(): React.ReactNode {
   const { profile: profileData, loading } = useProfileFetcher()
+  const { health } = useHealthChecker()
+
   const router = useRouter()
 
   const [modalState, setModalState] = useState<{
@@ -22,7 +25,7 @@ export default function Avatar(): React.ReactNode {
     type: ModalType.Password
   })
 
-  if (loading) {
+  if (loading || !health) {
     return <AiOutlineLoading3Quarters className="animate-spin" />
   }
 
@@ -98,7 +101,7 @@ export default function Avatar(): React.ReactNode {
           </AvatarItem>
         </li>
       </ul>
-      <FormikModal modalState={modalState} setModalState={setModalState} />
+      <ProfileModal modalState={modalState} setModalState={setModalState} />
     </div>
   )
 }

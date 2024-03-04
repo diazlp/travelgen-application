@@ -1,4 +1,5 @@
 import React, { InputHTMLAttributes, useState } from 'react'
+import { Field } from 'formik'
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
 
 interface InputProps {
@@ -7,6 +8,7 @@ interface InputProps {
   label: string
   placeholder: string
   className?: string
+  error?: any
 }
 
 enum InputType {
@@ -20,7 +22,8 @@ export default function Input({
   type,
   label,
   placeholder,
-  className
+  className,
+  error
 }: InputProps): React.ReactNode {
   const [hidePassword, setHidePassword] = useState<boolean>(false)
   const [inputType, setInputType] =
@@ -43,25 +46,28 @@ export default function Input({
     >
       <div className="mb-3">{label}</div>
 
-      <input
+      <Field
         type={inputType}
         name={name}
-        id={name}
         placeholder={placeholder}
-        className="appearance-none font-light border rounded-lg border-gray-70 text-heading-5 py-3 px-4 w-full focus:outline-none focus:ring-blue-100 focus:border-blue-100"
+        className={`appearance-none font-light border rounded-lg border-gray-70 text-heading-5 py-3 px-4 w-full focus:outline-none focus:ring-blue-100 focus:border-blue-100 ${
+          error ? 'border border-red-100' : ''
+        }`}
       />
 
       {type === InputType.Password ? (
         <button
           type="button"
-          className="absolute h-7 w-7 right-0 top-[70%] -translate-x-1/2 -translate-y-1/2"
+          className={`absolute h-7 w-7 right-0 -translate-x-1/2 -translate-y-1/2 ${
+            error ? 'top-[55%]' : 'top-[70%]'
+          }`}
           onClick={togglePasswordVisibility}
         >
           {hidePassword ? <FaEyeSlash size={20} /> : <FaEye size={20} />}
         </button>
       ) : null}
 
-      {/* <span className="text-xs text-red-100 ml-3">Error nih bos</span> */}
+      <span className="text-xs text-red-100 ml-3">{error}</span>
     </label>
   )
 }
