@@ -66,15 +66,17 @@ export default function Avatar(): React.ReactNode {
             <RiLockPasswordLine />
             Change Password
           </AvatarItem>
-          <AvatarItem
-            props={{
-              onClick: () =>
-                setModalState({ visible: true, type: ModalType.Verification })
-            }}
-          >
-            <CiCircleCheck />
-            Verify Email
-          </AvatarItem>
+          {!profileData.is_verified ? (
+            <AvatarItem
+              props={{
+                onClick: () =>
+                  setModalState({ visible: true, type: ModalType.Verification })
+              }}
+            >
+              <CiCircleCheck />
+              Verify Email
+            </AvatarItem>
+          ) : null}
           <AvatarItem
             props={{
               onClick: () => router.push('/profile')

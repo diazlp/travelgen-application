@@ -73,6 +73,44 @@ export const registerSchema: FastifySchema = {
   },
 };
 
+export const changePasswordSchema: FastifySchema = {
+  tags: ['Auth'],
+  summary: 'Change password endpoint',
+  security: [
+    {
+      ApiToken: [],
+    },
+  ],
+  body: {
+    type: 'object',
+    properties: {
+      password: { type: 'string' },
+    },
+  },
+  response: {
+    200: {
+      description: 'Change Password success',
+      type: 'object',
+      properties: {
+        message: { type: 'string' },
+      },
+      example: {
+        message: 'Password has been changed',
+      },
+    },
+    401: {
+      description: 'Unauthorized',
+      type: 'object',
+      properties: {
+        message: { type: 'string' },
+      },
+      example: {
+        message: 'Unauthorized.',
+      },
+    },
+  },
+};
+
 export const profileSchema: FastifySchema = {
   tags: ['Auth'],
   summary: 'User profile endpoint',
@@ -204,6 +242,54 @@ export const updateProfileSchema: FastifySchema = {
       },
       example: {
         message: 'Profile has been updated',
+      },
+    },
+    401: {
+      description: 'Unauthorized',
+      type: 'object',
+      properties: {
+        message: { type: 'string' },
+      },
+      example: {
+        message: 'Unauthorized.',
+      },
+    },
+  },
+};
+
+export const verifyEmailSchema: FastifySchema = {
+  tags: ['Auth'],
+  summary: 'Verify Email endpoint',
+  security: [
+    {
+      ApiToken: [],
+    },
+  ],
+  body: {
+    type: 'object',
+    properties: {
+      verification_code: { type: 'string' },
+    },
+  },
+  response: {
+    200: {
+      description: 'Verify Email success',
+      type: 'object',
+      properties: {
+        message: { type: 'string' },
+      },
+      example: {
+        message: 'Email has been verified',
+      },
+    },
+    400: {
+      description: 'Incorrect Verification Code',
+      type: 'object',
+      properties: {
+        message: { type: 'string' },
+      },
+      example: {
+        message: 'Verification code is invalid.',
       },
     },
     401: {

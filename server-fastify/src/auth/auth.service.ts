@@ -111,6 +111,45 @@ export default class AuthService {
     }
   }
 
+  static async changePasswordHandler(
+    fastify: FastifyInstance,
+    request: FastifyRequest<{
+      Headers: {
+        email: string;
+      };
+      Body: { password: string };
+    }>,
+    reply: FastifyReply,
+  ): Promise<{ message: string }> {
+    const { email } = JSON.parse(request.headers.authorization);
+    const { password } = request.body;
+
+    const hashedPassword = await fastify.bcrypt.hash(password);
+
+    try {
+      await prisma.user.update({
+        where: {
+          email,
+        },
+        data: {
+          password: hashedPassword,
+        },
+      });
+
+      return reply.status(200).send({ message: 'Password has been changed' });
+    } catch (error) {
+      console.log(error, '<<< coi');
+      if (error instanceof Prisma.PrismaClientKnownRequestError) {
+        if (error.code === 'P2025') {
+          return reply
+            .status(500)
+            .send({ code: 'P2025', message: 'No user found.' });
+        }
+      }
+      return reply.status(500).send({ message: 'Internal server error.' });
+    }
+  }
+
   static async profileHandler(
     request: FastifyRequest<{
       Headers: {
@@ -208,6 +247,48 @@ export default class AuthService {
       });
 
       return reply.status(200).send({ message: 'Profile has been updated' });
+    } catch (error) {
+      if (error instanceof Prisma.PrismaClientKnownRequestError) {
+        if (error.code === 'P2025') {
+          return reply
+            .status(500)
+            .send({ code: 'P2025', message: 'No user found.' });
+        }
+      }
+      return reply.status(500).send({ message: 'Internal server error.' });
+    }
+  }
+
+  static async verifyEmailHandler(
+    request: FastifyRequest<{
+      Headers: {
+        email: string;
+      };
+      Body: { verification_code: string };
+    }>,
+    reply: FastifyReply,
+  ): Promise<{ message: string }> {
+    const { email, verificationCode } = JSON.parse(
+      request.headers.authorization,
+    );
+    const { verification_code } = request.body;
+
+    if (verification_code.toLowerCase() !== verificationCode.toLowerCase()) {
+      return reply
+        .status(400)
+        .send({ message: 'Verification code is invalid.' });
+    }
+
+    try {
+      await prisma.user.update({
+        where: {
+          email,
+        },
+        data: {
+          is_verified: true,
+        },
+      });
+      return reply.status(200).send({ message: 'Password has been changed' });
     } catch (error) {
       if (error instanceof Prisma.PrismaClientKnownRequestError) {
         if (error.code === 'P2025') {

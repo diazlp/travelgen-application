@@ -1,11 +1,13 @@
 import { useState } from 'react'
 import { FormikHelpers } from 'formik'
+import useProfileFetcher from '../profile/useProfileFetcher'
 
 interface FormValues {
   verificationCode: string
 }
 
 const useVerifyEmailForm = () => {
+  const { mutate } = useProfileFetcher()
   const [initialValues] = useState<FormValues>({
     verificationCode: ''
   })
@@ -31,9 +33,14 @@ const useVerifyEmailForm = () => {
       const data = await response.json()
 
       if (!response.ok) {
-        throw new Error('Something went wrong')
+        if (data.message) {
+          throw new Error(data.message)
+        } else {
+          throw new Error('Something went wrong')
+        }
       }
 
+      await mutate()
       callback()
     } catch (error: any) {
       setStatus(error.message)

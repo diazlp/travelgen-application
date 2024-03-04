@@ -29,7 +29,11 @@ const useChangePasswordForm = () => {
       const data = await response.json()
 
       if (!response.ok) {
-        throw new Error('Something went wrong')
+        if (data.message) {
+          throw new Error(data.message)
+        } else {
+          throw new Error('Something went wrong')
+        }
       }
 
       callback()

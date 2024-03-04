@@ -7,8 +7,10 @@ import {
 import {
   loginSchema,
   registerSchema,
+  changePasswordSchema,
   profileSchema,
   updateProfileSchema,
+  verifyEmailSchema,
 } from './auth.schema';
 import Middleware from '../middleware';
 import AuthService from './auth.service';
@@ -22,13 +24,6 @@ export function authRoutes(
     method: 'POST',
     url: '/auth/login',
     schema: loginSchema,
-    preHandler: async (
-      request: FastifyRequest,
-      reply: FastifyReply,
-      done: DoneFuncWithErrOrRes,
-    ) => {
-      // E.g. check authentication
-    },
     handler: (request: FastifyRequest<any>, reply: FastifyReply) => {
       AuthService.loginHandler(fastify, request, reply);
     },
@@ -40,6 +35,22 @@ export function authRoutes(
     schema: registerSchema,
     handler: (request: FastifyRequest<any>, reply: FastifyReply) => {
       AuthService.registerHandler(fastify, request, reply);
+    },
+  });
+
+  fastify.route({
+    method: 'POST',
+    url: '/auth/change-password',
+    schema: changePasswordSchema,
+    preHandler: (
+      request: FastifyRequest<any>,
+      reply: FastifyReply,
+      done: DoneFuncWithErrOrRes,
+    ) => {
+      Middleware.verifyToken(fastify, request, reply, done);
+    },
+    handler: (request: FastifyRequest<any>, reply: FastifyReply) => {
+      AuthService.changePasswordHandler(fastify, request, reply);
     },
   });
 
@@ -69,6 +80,20 @@ export function authRoutes(
       Middleware.verifyToken(fastify, request, reply, done);
     },
     handler: AuthService.updateProfileHandler,
+  });
+
+  fastify.route({
+    method: 'POST',
+    url: '/auth/verify-email',
+    schema: verifyEmailSchema,
+    preHandler: (
+      request: FastifyRequest<any>,
+      reply: FastifyReply,
+      done: DoneFuncWithErrOrRes,
+    ) => {
+      Middleware.verifyToken(fastify, request, reply, done);
+    },
+    handler: AuthService.verifyEmailHandler,
   });
 
   done();
