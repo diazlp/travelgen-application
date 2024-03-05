@@ -1,25 +1,13 @@
 import React from 'react'
 import { IoMdClose } from 'react-icons/io'
+import { ProfileModalType, useProfileModalStore } from '@/libs/store'
 import ChangePasswordForm from './change-password'
 import VerifyEmailForm from './verify-email'
 
-export enum ModalType {
-  Password = 'password',
-  Verification = 'verification'
-}
+export default function ProfileModal(): React.ReactNode {
+  const profileModal = useProfileModalStore()
 
-interface ProfileModalProps {
-  modalState: { visible: boolean; type?: ModalType }
-  setModalState: React.Dispatch<
-    React.SetStateAction<{ visible: boolean; type?: ModalType }>
-  >
-}
-
-export default function ProfileModal({
-  modalState,
-  setModalState
-}: ProfileModalProps): React.ReactNode {
-  if (modalState.visible) {
+  if (profileModal.visible) {
     return (
       <div className="fixed w-full h-100 inset-0 z-50 overflow-hidden flex justify-center items-center bg-black bg-opacity-70 animate-fadeInModal">
         <div
@@ -29,19 +17,19 @@ export default function ProfileModal({
           <div className="flex flex-col py-4 text-left px-6">
             <div className="flex justify-between items-center">
               <p className="text-2xl font-bold text-gray-70">
-                {modalState.type === ModalType.Password
+                {profileModal.type === ProfileModalType.Password
                   ? 'Change Password'
                   : 'Email Verification Code:'}
               </p>
               <IoMdClose
                 className="cursor-pointer z-50"
-                onClick={() => setModalState({ visible: false })}
+                onClick={profileModal.closeModal}
               />
             </div>
-            {modalState.type === ModalType.Password ? (
-              <ChangePasswordForm setModalState={setModalState} />
+            {profileModal.type === ProfileModalType.Password ? (
+              <ChangePasswordForm />
             ) : (
-              <VerifyEmailForm setModalState={setModalState} />
+              <VerifyEmailForm />
             )}
           </div>
         </div>

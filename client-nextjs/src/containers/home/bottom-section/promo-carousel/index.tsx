@@ -60,7 +60,7 @@ export default function PromoCarousel(): React.ReactNode {
         }}
       >
         {promos.map((promo: Package) => {
-          return <PromoCard data={promo} key={promo.id} />
+          return <PromoCard key={promo.id} data={promo} />
         })}
       </Carousel>
     </Fragment>

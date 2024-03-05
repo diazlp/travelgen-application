@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { signOut } from 'next-auth/react'
@@ -8,24 +8,17 @@ import { RiLockPasswordLine } from 'react-icons/ri'
 import { CiUser, CiCircleCheck } from 'react-icons/ci'
 import { IoMdLogOut } from 'react-icons/io'
 import { AiOutlineLoading3Quarters } from 'react-icons/ai'
+import { ProfileModalType, useProfileModalStore } from '@/libs/store'
 import AvatarItem from './avatar-item'
-import ProfileModal, { ModalType } from '../profile-modal'
+import ProfileModal from '../profile-modal'
 
 export default function Avatar(): React.ReactNode {
+  const router = useRouter()
   const { profile: profileData, loading } = useProfileFetcher()
   const { health } = useHealthChecker()
+  const showProfileModal = useProfileModalStore((state) => state.showModal)
 
-  const router = useRouter()
-
-  const [modalState, setModalState] = useState<{
-    visible: boolean
-    type?: ModalType
-  }>({
-    visible: false,
-    type: ModalType.Password
-  })
-
-  if (loading || !health) {
+  if (loading || !health || !profileData.profile) {
     return <AiOutlineLoading3Quarters className="animate-spin" />
   }
 
@@ -62,8 +55,7 @@ export default function Avatar(): React.ReactNode {
         <li className="flex flex-col py-4 px-5 gap-4 font-sans text-md">
           <AvatarItem
             props={{
-              onClick: () =>
-                setModalState({ visible: true, type: ModalType.Password })
+              onClick: () => showProfileModal(ProfileModalType.Password)
             }}
           >
             <RiLockPasswordLine />
@@ -72,8 +64,7 @@ export default function Avatar(): React.ReactNode {
           {!profileData.is_verified ? (
             <AvatarItem
               props={{
-                onClick: () =>
-                  setModalState({ visible: true, type: ModalType.Verification })
+                onClick: () => showProfileModal(ProfileModalType.Verification)
               }}
             >
               <CiCircleCheck />
@@ -101,7 +92,7 @@ export default function Avatar(): React.ReactNode {
           </AvatarItem>
         </li>
       </ul>
-      <ProfileModal modalState={modalState} setModalState={setModalState} />
+      <ProfileModal />
     </div>
   )
 }

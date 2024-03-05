@@ -1,13 +1,28 @@
 import React from 'react'
 import Image from 'next/image'
-import Button from '@/components/button'
+import { useRouter } from 'next/router'
+import { useSession } from 'next-auth/react'
+import useProfileFetcher from '@/hooks/profile/useProfileFetcher'
 import { Package } from '@/libs/types/interface'
+import { conditionalRenderModal } from '@/libs/store'
+import Button from '@/components/button'
 
-export default function PromoCard({
-  data
-}: {
+interface PromoCardProps {
   data: Package
-}): React.ReactNode {
+}
+
+export default function PromoCard({ data }: PromoCardProps): React.ReactNode {
+  const router = useRouter()
+  const { data: session } = useSession()
+  const { profile } = useProfileFetcher()
+
+  const checkoutButtonHandler = () => {
+    if (!session) {
+      router.push('/login')
+    }
+    conditionalRenderModal(profile.is_verified, data)
+  }
+
   return (
     <article className="bg-white shadow-lg rounded-xl overflow-hidden w-[500px] h-[312px] flex">
       <figure className="relative w-[212px] h-full">
@@ -52,7 +67,13 @@ export default function PromoCard({
           <Button isFullWidth isOutlined className="text-heading-5 text-white">
             See detail
           </Button>
-          <Button isFullWidth className="text-heading-5 text-white">
+          <Button
+            isFullWidth
+            className="text-heading-5 text-white"
+            props={{
+              onClick: checkoutButtonHandler
+            }}
+          >
             Order
           </Button>
         </div>
