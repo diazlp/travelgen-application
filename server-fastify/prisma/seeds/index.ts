@@ -83,19 +83,11 @@ async function seed() {
     }
 
     for (const transaction of transactionsData) {
-      // Check if the transaction already exists
-      const existingTransaction = await prisma.transaction.findUnique({
-        where: { id: transaction.id },
+      await prisma.transaction.create({
+        data: {
+          ...transaction,
+        },
       });
-
-      // If transaction doesn't exist, create it
-      if (!existingTransaction) {
-        await prisma.transaction.create({
-          data: {
-            ...transaction,
-          },
-        });
-      }
     }
 
     console.log('Seed data inserted successfully.');

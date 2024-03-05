@@ -47,6 +47,7 @@ export default class AuthService {
       }
 
       const jwt = fastify.jwt.sign({
+        id: user.id,
         email: user.email,
         fullName: user.full_name,
         role: user.role,

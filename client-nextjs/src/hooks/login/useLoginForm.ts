@@ -38,7 +38,6 @@ const useLoginForm = (): FormikConfig<FormValues> => {
         router.push('/')
       }
     } catch (error: any) {
-      console.error('Error logging in:', error.message)
       setStatus('Something went wrong')
     } finally {
       setSubmitting(false)

@@ -19,16 +19,16 @@ const checkoutHandler = async (req: NextApiRequest, res: NextApiResponse) => {
       const session = await stripe.checkout.sessions.create({
         payment_method_types: ['card'],
         mode: 'payment',
-        success_url: `${process.env.NEXTAUTH_URL}/login`,
-        cancel_url: process.env.NEXTAUTH_URL,
+        success_url: `${process.env.NEXTAUTH_URL}?session_id={CHECKOUT_SESSION_ID}&package_id=${data.id}&quantity=${quantity}`,
+        cancel_url: `${process.env.NEXTAUTH_URL}?session_id={CHECKOUT_SESSION_ID}&package_id=${data.id}&quantity=${quantity}`,
         line_items: [
           {
             price_data: {
-              unit_amount: data.price * 100,
+              unit_amount: data.isPromo ? data.price * 90 : data.price * 100,
               currency: 'IDR',
               product_data: {
                 name: data.name,
-                description: data.description,
+                description: `NOTE: Use Card Number 4242 4242 4242 4242 and use any future-date & CVC | ${data.description}`,
                 images: [data.thumbnail]
               }
             },

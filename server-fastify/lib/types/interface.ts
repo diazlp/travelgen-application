@@ -37,7 +37,7 @@ export interface IPackageModel {
 }
 
 export interface ITransactionModel {
-  id: number;
+  id?: number;
   user_id: number;
   package_id: number;
   is_paid: boolean;

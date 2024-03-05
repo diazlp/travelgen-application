@@ -1,4 +1,4 @@
-import useSWR, { KeyedMutator } from 'swr'
+import useSWR from 'swr'
 
 async function healthChecker() {
   const res = await fetch('/api/health')

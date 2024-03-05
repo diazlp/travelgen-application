@@ -21,8 +21,6 @@ export class Utils {
 
       return formattedCurrencyIDR
     } catch (error) {
-      // Handle any errors that occur during formatting
-      console.error('Error formatting currency:', error)
       return '' // Return an empty string if formatting fails
     }
   }

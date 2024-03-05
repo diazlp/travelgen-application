@@ -1,10 +1,12 @@
 import React from 'react'
 import { loadStripe } from '@stripe/stripe-js'
+import usePaymentMaker from '@/hooks/payment/usePaymentMaker'
 import { useCheckoutModalStore } from '@/libs/store'
 import { Utils } from '@/libs/utils'
 import Button from '../button'
 
 export default function CheckoutModal(): React.ReactNode {
+  usePaymentMaker()
   const checkoutModal = useCheckoutModalStore()
 
   const checkoutHandler = async () => {
@@ -30,7 +32,7 @@ export default function CheckoutModal(): React.ReactNode {
         sessionId: data.session_id
       })
     } catch (error) {
-      console.error('Error on Checkout:', error)
+      // Empty block statement
     }
   }
 

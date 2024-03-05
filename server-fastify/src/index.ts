@@ -4,11 +4,13 @@ import fastifySwagger from '@fastify/swagger';
 import fastifySwaggerUi from '@fastify/swagger-ui';
 import fastifyBcrypt from 'fastify-bcrypt';
 import fastifyJwt from '@fastify/jwt';
+import fastifyStripe from 'fastify-stripe';
 
 import { swaggerOptions, swaggerUIOptions } from '../lib/swagger/options';
 
 import { authRoutes } from './auth/auth.routes';
 import { healthRoutes } from './health/health.routes';
+import { transactionRoutes } from './transaction/transaction.routes';
 
 const app: FastifyInstance = fastify({
   logger: false,
@@ -31,9 +33,13 @@ app.register(fastifyJwt, {
 app.register(fastifySwagger, swaggerOptions);
 app.register(fastifySwaggerUi, swaggerUIOptions);
 
+/*Register Stripe API*/
+app.register(fastifyStripe, { apiKey: process.env.STRIPE_SECRET_KEY });
+
 /*Register Routes*/
 app.register(healthRoutes, { prefix: '/v1.0' });
 app.register(authRoutes, { prefix: '/v1.0' });
+app.register(transactionRoutes, { prefix: '/v1.0' });
 
 app.route({
   method: 'GET',
