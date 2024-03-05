@@ -1,10 +1,38 @@
 import React from 'react'
-import Button from '../button'
-import { Utils } from '@/libs/utils'
+import { loadStripe } from '@stripe/stripe-js'
 import { useCheckoutModalStore } from '@/libs/store'
+import { Utils } from '@/libs/utils'
+import Button from '../button'
 
 export default function CheckoutModal(): React.ReactNode {
   const checkoutModal = useCheckoutModalStore()
+
+  const checkoutHandler = async () => {
+    const stripePromise = await loadStripe(
+      process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string
+    )
+
+    try {
+      const res = await fetch('/api/transaction/checkout', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          data: checkoutModal.data,
+          quantity: checkoutModal.quantity
+        })
+      })
+
+      const data = await res.json()
+
+      await stripePromise?.redirectToCheckout({
+        sessionId: data.session_id
+      })
+    } catch (error) {
+      console.error('Error on Checkout:', error)
+    }
+  }
 
   if (checkoutModal.visible) {
     return (
@@ -54,7 +82,14 @@ export default function CheckoutModal(): React.ReactNode {
                       )
                   : 0}
               </p>
-              <Button className="w-[190px] text-white">Checkout</Button>
+              <Button
+                className="w-[190px] text-white"
+                props={{
+                  onClick: checkoutHandler
+                }}
+              >
+                Checkout
+              </Button>
             </div>
           </div>
         </div>

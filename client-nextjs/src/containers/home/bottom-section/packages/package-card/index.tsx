@@ -49,6 +49,7 @@ export default function PackageCard({
             {data.rating} ({data.reviewers} Review)
           </p>
         </div>
+        <p className="text-heading-3 font-bold font-label">{data.name}</p>
         <p className="text-heading-4 text-gray-70 mb-4">{data.country}</p>
 
         <p className="text-heading-3 text-gray-100 font-bold mb-4">

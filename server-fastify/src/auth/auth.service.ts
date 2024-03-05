@@ -138,7 +138,6 @@ export default class AuthService {
 
       return reply.status(200).send({ message: 'Password has been changed' });
     } catch (error) {
-      console.log(error, '<<< coi');
       if (error instanceof Prisma.PrismaClientKnownRequestError) {
         if (error.code === 'P2025') {
           return reply

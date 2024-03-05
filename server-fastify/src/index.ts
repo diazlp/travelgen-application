@@ -31,12 +31,7 @@ app.register(fastifyJwt, {
 app.register(fastifySwagger, swaggerOptions);
 app.register(fastifySwaggerUi, swaggerUIOptions);
 
-// app.addHook('onRequest', (request, _, done) => {
-//   console.log('<<<<<<<<<<<<<<<<');
-
-//   done();
-// });
-
+/*Register Routes*/
 app.register(healthRoutes, { prefix: '/v1.0' });
 app.register(authRoutes, { prefix: '/v1.0' });
 
