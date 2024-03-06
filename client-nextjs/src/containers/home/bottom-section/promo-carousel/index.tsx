@@ -1,11 +1,17 @@
 import React, { Fragment } from 'react'
 import Image from 'next/image'
 import Carousel from 'react-multi-carousel'
-import { promos } from '@/libs/constants'
+import { usePackageStore } from '@/libs/store'
 import { Package } from '@/libs/types/interface'
 import PromoCard from './promo-card'
 
 export default function PromoCarousel(): React.ReactNode {
+  const packages = usePackageStore((state) => state.packages)
+
+  if (!packages?.length) {
+    return <></>
+  }
+
   return (
     <Fragment>
       <h3 className="text-heading-3 text-white font-label font-bold pt-14 mb-4">
@@ -59,9 +65,11 @@ export default function PromoCarousel(): React.ReactNode {
           }
         }}
       >
-        {promos.map((promo: Package) => {
-          return <PromoCard key={promo.id} data={promo} />
-        })}
+        {packages
+          .filter(({ is_promo }: Package) => is_promo)
+          .map((promo: Package) => {
+            return <PromoCard key={promo.id} data={promo} />
+          })}
       </Carousel>
     </Fragment>
   )

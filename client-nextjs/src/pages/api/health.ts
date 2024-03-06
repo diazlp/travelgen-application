@@ -1,5 +1,4 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import { getToken } from 'next-auth/jwt'
 
 const healthHandler = async (req: NextApiRequest, res: NextApiResponse) => {
   const baseApiURL = process.env.BASE_API_URL

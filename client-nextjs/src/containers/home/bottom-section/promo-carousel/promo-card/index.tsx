@@ -54,13 +54,13 @@ export default function PromoCard({ data }: PromoCardProps): React.ReactNode {
         </p>
 
         <p className="text-heading-5 text-gray-70 mb-4">
-          {data.description.length <= 75
+          {data.description?.length <= 75
             ? data.description
             : `${data.description.slice(0, 78)}...`}
         </p>
 
         <p className="text-heading-5 text-gray-50 mb-4">
-          Departure: {new Date(data.departureDate).toLocaleDateString('id-ID')}
+          Departure: {new Date(data.departure_date).toLocaleDateString('id-ID')}
         </p>
 
         <div className="flex justify-between gap-3">

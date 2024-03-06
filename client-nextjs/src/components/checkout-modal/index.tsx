@@ -75,7 +75,7 @@ export default function CheckoutModal(): React.ReactNode {
             <div className="flex items-center gap-8">
               <p className="text-heading-3 font-bold">
                 {checkoutModal.data
-                  ? checkoutModal.data.isPromo
+                  ? checkoutModal.data.is_promo
                     ? Utils.formatCurrency(
                         checkoutModal.data.price * 0.9 * checkoutModal.quantity
                       )

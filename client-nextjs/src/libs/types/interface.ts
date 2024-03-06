@@ -6,10 +6,12 @@ export interface Package {
   thumbnail: string
   images: string[]
   description: string
-  departureDate: string
+  departure_date: Date | string
   rating: number
   reviewers: number
-  isPromo?: boolean
+  is_promo?: boolean
+  created_at?: Date
+  updated_at?: Date
 }
 export interface Category {
   id: string

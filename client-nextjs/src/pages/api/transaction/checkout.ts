@@ -1,6 +1,6 @@
-import { Package } from '@/libs/types/interface'
 import { NextApiRequest, NextApiResponse } from 'next'
 import Stripe from 'stripe'
+import { Package } from '@/libs/types/interface'
 
 interface CheckoutValues {
   data: Package
@@ -24,7 +24,7 @@ const checkoutHandler = async (req: NextApiRequest, res: NextApiResponse) => {
         line_items: [
           {
             price_data: {
-              unit_amount: data.isPromo ? data.price * 90 : data.price * 100,
+              unit_amount: data.is_promo ? data.price * 90 : data.price * 100,
               currency: 'IDR',
               product_data: {
                 name: data.name,

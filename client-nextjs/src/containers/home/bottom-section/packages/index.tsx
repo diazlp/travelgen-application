@@ -1,9 +1,15 @@
 import React, { Fragment } from 'react'
-import { packages } from '@/libs/constants'
+import { usePackageStore } from '@/libs/store'
 import { Package } from '@/libs/types/interface'
 import PackageCard from './package-card'
 
 export default function Packages(): React.ReactNode {
+  const packages = usePackageStore((state) => state.packages)
+
+  if (!packages?.length) {
+    return <></>
+  }
+
   return (
     <Fragment>
       <h3 className="text-heading-3 text-white font-label font-bold pt-14 mb-1">
@@ -14,9 +20,11 @@ export default function Packages(): React.ReactNode {
       </p>
 
       <div className="flex justify-between">
-        {packages.map((data: Package) => {
-          return <PackageCard data={data} key={data.id} />
-        })}
+        {packages
+          .filter(({ is_promo }: Package) => !is_promo)
+          .map((data: Package) => {
+            return <PackageCard data={data} key={data.id} />
+          })}
       </div>
     </Fragment>
   )

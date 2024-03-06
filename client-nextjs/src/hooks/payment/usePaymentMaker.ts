@@ -72,7 +72,7 @@ const usePaymentMaker = () => {
         }
       })()
     }
-  }, [sessionId, packageId, quantity])
+  }, [sessionId, packageId, quantity, router])
 }
 
 export default usePaymentMaker

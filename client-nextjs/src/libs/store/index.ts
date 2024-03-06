@@ -23,6 +23,16 @@ interface ProfileModalState {
   closeModal: () => void
 }
 
+interface PackageStore {
+  packages: Package[] | null
+  setPackages: (data: Package[]) => void
+}
+
+export const usePackageStore = create<PackageStore>((set) => ({
+  packages: null,
+  setPackages: (data: Package[]) => set({ packages: data })
+}))
+
 export const useCheckoutModalStore = create<CheckoutModalState>((set) => ({
   visible: false,
   data: null,
