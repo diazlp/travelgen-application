@@ -1,3 +1,8 @@
+import fetchCategories from './fetchCategories'
+import fetchPackages from './fetchPackages'
+
+export { fetchCategories, fetchPackages }
+
 /**
  * Utils class containing utility methods.
  */

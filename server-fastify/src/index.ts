@@ -5,6 +5,7 @@ import fastifySwaggerUi from '@fastify/swagger-ui';
 import fastifyBcrypt from 'fastify-bcrypt';
 import fastifyJwt from '@fastify/jwt';
 import fastifyStripe from 'fastify-stripe';
+import fastifyMongodb from '@fastify/mongodb';
 
 import { swaggerOptions, swaggerUIOptions } from '../lib/swagger/options';
 
@@ -28,6 +29,12 @@ app.register(fastifyBcrypt, {
 /*Register Authorization with JWT*/
 app.register(fastifyJwt, {
   secret: process.env.JWT_SECRET_KEY,
+});
+
+/*Register MongoDB*/
+app.register(fastifyMongodb, {
+  forceClose: true,
+  url: process.env.MONGODB_URI,
 });
 
 /*Register Swagger Documentation*/

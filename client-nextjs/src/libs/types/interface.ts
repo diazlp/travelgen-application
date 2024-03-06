@@ -13,11 +13,13 @@ export interface Package {
   created_at?: Date | string
   updated_at?: Date | string
 }
+
 export interface Category {
-  id: string
+  _id: string
   name: string
   thumbnail: string
 }
+
 export interface Testimony {
   id: string
   fullName: string

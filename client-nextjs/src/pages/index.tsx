@@ -1,33 +1,41 @@
 import React, { useEffect } from 'react'
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
-import { usePackageStore } from '@/libs/store'
-import { Package } from '@/libs/types/interface'
+import { usePackageStore, useCategoryStore } from '@/libs/store'
+import { Package, Category } from '@/libs/types/interface'
+import { fetchCategories, fetchPackages } from '@/libs/utils'
 import HomeContainer from '@/containers/home'
 
+interface HomePageProps {
+  packages: Package[]
+  categories: Category[]
+}
+
 export const getStaticProps: GetStaticProps = async () => {
-  const response = await fetch(
-    `${process.env.BASE_API_URL}/v1.0/package/find-all`
-  )
-  const data: Package[] = await response.json()
+  const [packages, categories] = await Promise.all([
+    fetchPackages(),
+    fetchCategories()
+  ])
 
   return {
     props: {
-      packages: data
+      packages,
+      categories
     }
   }
 }
 
 export default function HomePage({
-  packages
-}: {
-  packages: Package[]
-}): React.ReactNode {
-  const storeGeneratedPackages = usePackageStore((state) => state.setPackages)
+  packages,
+  categories
+}: HomePageProps): React.ReactNode {
+  useEffect(() => {
+    usePackageStore.getState().setPackages(packages)
+  }, [packages])
 
   useEffect(() => {
-    storeGeneratedPackages(packages)
-  }, [storeGeneratedPackages, packages])
+    useCategoryStore.getState().setCategories(categories)
+  }, [categories])
 
   return (
     <>

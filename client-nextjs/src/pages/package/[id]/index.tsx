@@ -1,9 +1,8 @@
 import React from 'react'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Head from 'next/head'
-import PackageContainer from '@/containers/package'
 import { Package } from '@/libs/types/interface'
-import { renderToString } from 'react-dom/server'
+import PackageContainer from '@/containers/package'
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const response = await fetch(

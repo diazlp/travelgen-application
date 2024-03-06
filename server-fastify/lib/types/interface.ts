@@ -46,3 +46,9 @@ export interface ITransactionModel {
   created_at?: Date;
   updated_at?: Date;
 }
+
+export interface ICategoryModel {
+  _id: string;
+  name: string;
+  thumbnail: string;
+}

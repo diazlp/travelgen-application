@@ -1,43 +1,4 @@
-import { Category, Testimony } from './types/interface'
-
-export const categories: Category[] = [
-  {
-    id: '625bcee2c688a9a06c0d2d93',
-    name: 'Europe',
-    thumbnail:
-      'https://images.unsplash.com/photo-1511739001486-6bfe10ce785f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80'
-  },
-  {
-    id: '625bc8b60ab04524b9949959',
-    name: 'Mountain',
-    thumbnail:
-      'https://images.unsplash.com/photo-1585357214259-f977cc7d73a4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'
-  },
-  {
-    id: '625bcef0c688a9a06c0d2d94',
-    name: 'Historical',
-    thumbnail:
-      'https://images.unsplash.com/photo-1515542622106-78bda8ba0e5b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'
-  },
-  {
-    id: '625bcad60ab04524b994995a',
-    name: 'Cliff',
-    thumbnail:
-      'https://images.unsplash.com/photo-1550583088-ffe97305e2c8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'
-  },
-  {
-    id: '625bcea3c688a9a06c0d2d91',
-    name: 'Beach',
-    thumbnail:
-      'https://images.unsplash.com/photo-1545579133-99bb5ab189bd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'
-  },
-  {
-    id: '625bcebec688a9a06c0d2d92',
-    name: 'Asia',
-    thumbnail:
-      'https://images.unsplash.com/photo-1574236170880-fbbca132d83d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=326&q=80'
-  }
-]
+import { Testimony } from './types/interface'
 
 export const testimonies: Testimony[] = [
   {

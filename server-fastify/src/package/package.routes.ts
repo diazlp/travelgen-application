@@ -4,7 +4,11 @@ import {
   FastifyRequest,
   FastifyReply,
 } from 'fastify';
-import { findAllSchema, findOneSchema } from './package.schema';
+import {
+  findAllSchema,
+  findOneSchema,
+  categoriesSchema,
+} from './package.schema';
 import Middleware from '../middleware';
 import PackageService from './package.service';
 
@@ -25,6 +29,15 @@ export function packageRoutes(
     url: '/package/find-one/:id',
     schema: findOneSchema,
     handler: PackageService.findOneHandler,
+  });
+
+  fastify.route({
+    method: 'GET',
+    url: '/package/categories',
+    schema: categoriesSchema,
+    handler: (_: FastifyRequest<any>, reply: FastifyReply) => {
+      PackageService.categoriesHandler(fastify, reply);
+    },
   });
 
   done();
