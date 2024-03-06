@@ -4,12 +4,7 @@ import {
   FastifyRequest,
   FastifyReply,
 } from 'fastify';
-import {
-  findAllSchema,
-  findOneSchema,
-  findAllCategorySchema,
-  findAllTestimonySchema,
-} from './package.schema';
+import { findAllSchema, findOneSchema } from './package.schema';
 import Middleware from '../middleware';
 import PackageService from './package.service';
 
@@ -31,24 +26,5 @@ export function packageRoutes(
     schema: findOneSchema,
     handler: PackageService.findOneHandler,
   });
-
-  fastify.route({
-    method: 'GET',
-    url: '/category/find-all',
-    schema: findAllCategorySchema,
-    handler: (_: FastifyRequest<any>, reply: FastifyReply) => {
-      PackageService.findAllCategoryHandler(fastify, reply);
-    },
-  });
-
-  fastify.route({
-    method: 'GET',
-    url: '/testimony/find-all',
-    schema: findAllTestimonySchema,
-    handler: (request: FastifyRequest<any>, reply: FastifyReply) => {
-      PackageService.findAllTestimonyHandler(fastify, request, reply);
-    },
-  });
-
   done();
 }

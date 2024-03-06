@@ -9,10 +9,12 @@ import fastifyMongodb from '@fastify/mongodb';
 
 import { swaggerOptions, swaggerUIOptions } from '../lib/swagger/options';
 
-import { authRoutes } from './auth/auth.routes';
 import { healthRoutes } from './health/health.routes';
-import { transactionRoutes } from './transaction/transaction.routes';
+import { authRoutes } from './auth/auth.routes';
 import { packageRoutes } from './package/package.routes';
+import { categoryRoutes } from './category/category.routes';
+import { testimonyRoutes } from './testimony/testimony.routes';
+import { transactionRoutes } from './transaction/transaction.routes';
 
 const app: FastifyInstance = fastify({
   logger: false,
@@ -48,6 +50,8 @@ app.register(fastifyStripe, { apiKey: process.env.STRIPE_SECRET_KEY });
 app.register(healthRoutes, { prefix: '/v1.0' });
 app.register(authRoutes, { prefix: '/v1.0' });
 app.register(packageRoutes, { prefix: '/v1.0' });
+app.register(categoryRoutes, { prefix: '/v1.0' });
+app.register(testimonyRoutes, { prefix: '/v1.0' });
 app.register(transactionRoutes, { prefix: '/v1.0' });
 
 const start = async () => {
