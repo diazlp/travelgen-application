@@ -5,6 +5,7 @@ import useCategoryStore from './useCategoryStore'
 import useTestimonyStore from './useTestimonyStore'
 import useCheckoutModalStore from './useCheckoutModalStore'
 import useProfileModalStore, { ProfileModalType } from './useProfileModalStore'
+import useTestimonyModalStore from './useTestimonyModalStore'
 
 const conditionalRenderModal = (condition: boolean, data: Package) => {
   return condition
@@ -18,6 +19,7 @@ export {
   useTestimonyStore,
   useCheckoutModalStore,
   useProfileModalStore,
+  useTestimonyModalStore,
   ProfileModalType,
   conditionalRenderModal
 }

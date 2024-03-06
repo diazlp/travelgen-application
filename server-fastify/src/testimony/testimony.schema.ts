@@ -40,36 +40,66 @@ export const findAllSchema: FastifySchema = {
         },
       ],
     },
-    // 404: {
-    //   description: 'Payment not found',
-    //   type: 'object',
-    //   properties: {
-    //     message: { type: 'string' },
-    //   },
-    //   example: {
-    //     message: 'Payment not found.',
-    //   },
-    // },
-    // 401: {
-    //   description: 'Unauthorized',
-    //   type: 'object',
-    //   properties: {
-    //     message: { type: 'string' },
-    //   },
-    //   example: {
-    //     message: 'Unauthorized.',
-    //   },
-    // },
-    // 400: {
-    //   description: 'Payment not verified',
-    //   type: 'object',
-    //   properties: {
-    //     message: { type: 'string' },
-    //   },
-    //   example: {
-    //     message:
-    //       'Payment not verified. Please check your payment or contact administrator.',
-    //   },
-    // },
+  },
+};
+
+export const createSchema: FastifySchema = {
+  tags: ['Testimony'],
+  summary: 'Create testimony endpoint',
+  security: [
+    {
+      ApiToken: [],
+    },
+  ],
+  body: {
+    type: 'object',
+    properties: {
+      review: { type: 'string' },
+      rating: { type: 'number' },
+      destination: { type: 'string' },
+    },
+    required: ['review', 'rating', 'destination'],
+  },
+  response: {
+    200: {
+      description: 'Testimony created',
+      type: 'object',
+      properties: {
+        message: { type: 'string' },
+      },
+      example: {
+        message: 'New testimony has been added.',
+      },
+    },
+    404: {
+      description: 'Destination not found',
+      type: 'object',
+      properties: {
+        message: { type: 'string' },
+      },
+      example: {
+        message: 'Destination not found.',
+      },
+    },
+    401: {
+      description: 'Unauthorized',
+      type: 'object',
+      properties: {
+        message: { type: 'string' },
+      },
+      example: {
+        message: 'Unauthorized.',
+      },
+    },
+    400: {
+      description: 'Bad request',
+      type: 'object',
+      properties: {
+        message: { type: 'string' },
+      },
+      example: {
+        message: 'Rating must be between 1 and 5',
+      },
+    },
   },
 };

@@ -2,22 +2,15 @@ import React from 'react'
 import { Formik, Form, Field } from 'formik'
 import useVerifyEmailForm from '@/hooks/verify-email/useVerifyEmailForm'
 import Button from '@/components/button'
-import { useProfileModalStore } from '@/libs/store'
 
 export default function VerifyEmailForm(): React.ReactNode {
-  const closeProfileModal = useProfileModalStore((state) => state.closeModal)
   const { initialValues, onSubmit, validate } = useVerifyEmailForm()
 
   return (
     <Formik
       initialValues={initialValues}
       validate={validate}
-      onSubmit={(values, formikHelpers) =>
-        onSubmit(values, {
-          ...formikHelpers,
-          callback: closeProfileModal
-        })
-      }
+      onSubmit={onSubmit}
     >
       {({ isSubmitting, errors, status }) => (
         <Form>

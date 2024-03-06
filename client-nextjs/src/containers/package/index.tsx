@@ -16,7 +16,7 @@ export default function PackageContainer({
       <Container>
         <MainSection data={packageData} />
         <InfoSection />
-        <TestimonySection data={packageData.testimonies} />
+        <TestimonySection packageData={packageData} />
       </Container>
     </Layout>
   )

@@ -1,17 +1,20 @@
 import { useState } from 'react'
 import { FormikHelpers } from 'formik'
-import useProfileFetcher from '../profile/useProfileFetcher'
-import { useProfileModalStore } from '@/libs/store'
+import { useTestimonyModalStore } from '@/libs/store'
+import useTestimonyFetcher from './useTestimonyFetcher'
 
 interface FormValues {
-  verificationCode: string
+  rating: number
+  review: string
 }
 
-const useVerifyEmailForm = () => {
-  const closeProfileModal = useProfileModalStore((state) => state.closeModal)
-  const { mutate } = useProfileFetcher()
+const useTestimonyForm = () => {
+  const { data: packageData, closeModal: closeTestimonyModal } =
+    useTestimonyModalStore()
+  const { mutate } = useTestimonyFetcher(packageData?.name as string)
   const [initialValues] = useState<FormValues>({
-    verificationCode: ''
+    rating: 0,
+    review: ''
   })
 
   const onSubmit = async (
@@ -19,13 +22,14 @@ const useVerifyEmailForm = () => {
     { setSubmitting, setStatus }: FormikHelpers<FormValues>
   ) => {
     try {
-      const response = await fetch('/api/auth/verify-email', {
+      const response = await fetch('/api/testimony', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          verification_code: values.verificationCode
+          ...values,
+          destination: packageData?.name
         })
       })
       const data = await response.json()
@@ -39,7 +43,7 @@ const useVerifyEmailForm = () => {
       }
 
       await mutate()
-      closeProfileModal()
+      closeTestimonyModal()
     } catch (error: any) {
       setStatus(error.message)
     } finally {
@@ -50,9 +54,16 @@ const useVerifyEmailForm = () => {
   const validate = (values: FormValues): Partial<FormValues> => {
     const errors: Partial<FormValues> = {}
 
-    // Verification Code validation
-    if (!values.verificationCode) {
-      errors.verificationCode = 'Verification Code is required'
+    // Review validation
+    if (!values.review) {
+      errors.review = 'Review is required'
+    }
+
+    // Rating validation
+    if (!values.rating) {
+      errors.rating = 'Rating is required' as any
+    } else if (values.rating < 1 || values.rating > 5) {
+      errors.rating = 'Rating must be between 1 and 5' as any
     }
 
     return errors
@@ -65,4 +76,4 @@ const useVerifyEmailForm = () => {
   }
 }
 
-export default useVerifyEmailForm
+export default useTestimonyForm

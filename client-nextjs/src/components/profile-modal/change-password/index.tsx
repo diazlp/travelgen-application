@@ -3,7 +3,6 @@ import { Formik, Form, Field } from 'formik'
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
 import useChangePasswordForm from '@/hooks/change-password/useChangePasswordForm'
 import Button from '@/components/button'
-import { useProfileModalStore } from '@/libs/store'
 
 enum InputType {
   Text = 'text',
@@ -11,7 +10,6 @@ enum InputType {
 }
 
 export default function ChangePasswordForm(): React.ReactNode {
-  const closeProfileModal = useProfileModalStore((state) => state.closeModal)
   const { initialValues, onSubmit, validate } = useChangePasswordForm()
   const [hidePassword, setHidePassword] = useState<boolean>(false)
   const [inputType, setInputType] =
@@ -31,12 +29,7 @@ export default function ChangePasswordForm(): React.ReactNode {
     <Formik
       initialValues={initialValues}
       validate={validate}
-      onSubmit={(values, formikHelpers) =>
-        onSubmit(values, {
-          ...formikHelpers,
-          callback: closeProfileModal
-        })
-      }
+      onSubmit={onSubmit}
     >
       {({ isSubmitting, errors, status }) => (
         <Form>

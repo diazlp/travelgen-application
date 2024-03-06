@@ -1,22 +1,20 @@
 import { useState } from 'react'
 import { FormikHelpers } from 'formik'
+import { useProfileModalStore } from '@/libs/store'
 
 interface FormValues {
   password: string
 }
 
 const useChangePasswordForm = () => {
+  const closeProfileModal = useProfileModalStore((state) => state.closeModal)
   const [initialValues] = useState<FormValues>({
     password: ''
   })
 
   const onSubmit = async (
     values: FormValues,
-    {
-      setSubmitting,
-      setStatus,
-      callback
-    }: FormikHelpers<FormValues> & { callback: () => void }
+    { setSubmitting, setStatus }: FormikHelpers<FormValues>
   ) => {
     try {
       const response = await fetch('/api/auth/change-password', {
@@ -36,7 +34,7 @@ const useChangePasswordForm = () => {
         }
       }
 
-      callback()
+      closeProfileModal()
     } catch (error: any) {
       setStatus(error.message)
     } finally {
