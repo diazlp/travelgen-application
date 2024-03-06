@@ -34,8 +34,12 @@ export const swaggerOptions: FastifyDynamicSwaggerOptions = {
         description: 'Authentication API',
       },
       {
+        name: 'Package',
+        description: 'Application Package API',
+      },
+      {
         name: 'Transaction',
-        description: 'Customer Transaction API',
+        description: 'User Transaction API',
       },
     ],
     definitions: {

@@ -19,7 +19,7 @@ export default class TransactionService {
       Body: { session_id: string; package_id: number; quantity: number };
     }>,
     reply: FastifyReply,
-  ): Promise<any> {
+  ): Promise<{ message: string }> {
     const { id } = JSON.parse(request.headers.authorization);
     const { session_id, package_id, quantity } = request.body;
 
