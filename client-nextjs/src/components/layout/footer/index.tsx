@@ -13,7 +13,6 @@ export default function Footer(): React.ReactNode {
             <Image
               src={'/assets/travelgen-footer-logo.png'}
               alt="Travelgen Footer Logo"
-              // placeholder="blur"
               height={98}
               width={136}
             />

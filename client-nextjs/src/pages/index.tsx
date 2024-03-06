@@ -1,14 +1,15 @@
 import React, { useEffect } from 'react'
+import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import { usePackageStore } from '@/libs/store'
 import { Package } from '@/libs/types/interface'
 import HomeContainer from '@/containers/home'
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async () => {
   const response = await fetch(
     `${process.env.BASE_API_URL}/v1.0/package/find-all`
   )
-  const data = await response.json()
+  const data: Package[] = await response.json()
 
   return {
     props: {
@@ -32,6 +33,11 @@ export default function HomePage({
     <>
       <Head>
         <title>TravelGen Web</title>
+        <meta
+          name="description"
+          content="Embark on an exciting journey with our Travel Agent application! Discover and order custom travel packages tailored to your preferences, all at the touch of a button"
+        />
+        <meta name="author" content="Diaz Linggaputra" />
       </Head>
       <HomeContainer />
     </>

@@ -22,13 +22,13 @@ export default function MainSection({
             className="rounded-xl shadow-md w-full h-full"
             width={400}
             height={200}
+            priority
           />
         </figure>
         <div className="grid grid-cols-2 md:w-1/2 items-center">
           {data.images.map((image, index) => (
-            <figure className="px-4 mb-8">
+            <figure className="px-4 mb-8" key={index}>
               <Image
-                key={index}
                 src={image}
                 alt={image}
                 className="rounded-xl shadow-md h-[172px] w-[288px]"
