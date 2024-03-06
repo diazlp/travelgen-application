@@ -64,7 +64,14 @@ export default function PromoCard({ data }: PromoCardProps): React.ReactNode {
         </p>
 
         <div className="flex justify-between gap-3">
-          <Button isFullWidth isOutlined className="text-heading-5 text-white">
+          <Button
+            isFullWidth
+            isOutlined
+            className="text-heading-5 text-white"
+            props={{
+              onClick: () => router.push(`/package/${data.id}`)
+            }}
+          >
             See detail
           </Button>
           <Button

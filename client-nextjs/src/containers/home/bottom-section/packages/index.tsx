@@ -22,9 +22,9 @@ export default function Packages(): React.ReactNode {
       <div className="flex justify-between">
         {packages
           .filter(({ is_promo }: Package) => !is_promo)
-          .map((data: Package) => {
-            return <PackageCard data={data} key={data.id} />
-          })}
+          .map((data: Package) => (
+            <PackageCard data={data} key={data.id} />
+          ))}
       </div>
     </Fragment>
   )

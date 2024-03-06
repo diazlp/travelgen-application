@@ -67,9 +67,9 @@ export default function PromoCarousel(): React.ReactNode {
       >
         {packages
           .filter(({ is_promo }: Package) => is_promo)
-          .map((promo: Package) => {
-            return <PromoCard key={promo.id} data={promo} />
-          })}
+          .map((promo: Package) => (
+            <PromoCard key={promo.id} data={promo} />
+          ))}
       </Carousel>
     </Fragment>
   )

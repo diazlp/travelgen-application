@@ -59,7 +59,14 @@ export default function PackageCard({
         <p className="text-heading-5 text-gray-70 mb-4">{data.description}</p>
 
         <div className="flex justify-between gap-3">
-          <Button isFullWidth isOutlined className="text-heading-5 text-white">
+          <Button
+            isFullWidth
+            isOutlined
+            className="text-heading-5 text-white"
+            props={{
+              onClick: () => router.push(`/package/${data.id}`)
+            }}
+          >
             See Detail
           </Button>
           <Button

@@ -1,22 +1,19 @@
+import React from 'react'
 import { testimonies } from '@/libs/constants'
-import React, { Fragment } from 'react'
 import TestimonyCard from './testimony-card'
 
-export default function Testimonials(): React.ReactNode {
+export default function TestimonySection(): React.ReactNode {
   return (
-    <Fragment>
-      <h3 className="text-heading-3 font-label font-bold pt-14 mb-1">
+    <section className="py-14">
+      <h3 className="text-heading-3 font-label font-bold mb-6">
         Customer Testimonies
       </h3>
-      <p className="text-heading-4 mb-4">
-        What they think about our package service
-      </p>
 
       <div className="flex justify-between">
         {testimonies.map((testimony) => (
           <TestimonyCard data={testimony} key={testimony.id} />
         ))}
       </div>
-    </Fragment>
+    </section>
   )
 }
