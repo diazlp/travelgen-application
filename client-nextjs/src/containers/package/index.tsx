@@ -4,7 +4,7 @@ import Layout from '@/components/layout'
 import Container from '@/components/container'
 import MainSection from './main-section'
 import InfoSection from './info-section'
-import TestimonySection from './testimony-secion'
+import TestimonySection from './testimony-section'
 
 export default function PackageContainer({
   packageData
@@ -16,7 +16,7 @@ export default function PackageContainer({
       <Container>
         <MainSection data={packageData} />
         <InfoSection />
-        <TestimonySection />
+        <TestimonySection data={packageData.testimonies} />
       </Container>
     </Layout>
   )

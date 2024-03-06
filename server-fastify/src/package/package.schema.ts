@@ -70,6 +70,22 @@ export const findOneSchema: FastifySchema = {
         is_promo: { type: 'boolean' },
         created_at: { type: 'string', format: 'date' },
         updated_at: { type: 'string', format: 'date' },
+        testimonies: {
+          type: 'array',
+          items: {
+            type: 'object',
+            properties: {
+              _id: { type: 'string' },
+              full_name: { type: 'string' },
+              avatar: { type: 'string' },
+              location: { type: 'string' },
+              review: { type: 'string' },
+              rating: { type: 'number' },
+              destination: { type: 'string' },
+              checkout_at: { type: 'string', format: 'date' },
+            },
+          },
+        },
       },
       example: {
         id: 5,
@@ -92,6 +108,19 @@ export const findOneSchema: FastifySchema = {
         is_promo: true,
         created_at: new Date(),
         updated_at: new Date(),
+        testimonies: [
+          {
+            _id: '65e83930343a86075a90348c',
+            full_name: 'Diaz Linggaputra',
+            avatar:
+              'https://diazlinggaputra.vercel.app/_next/image?url=%2Fassets%2Fimages%2Fdiazlp-photo.png&w=384&q=75',
+            location: 'Indonesia',
+            review: 'It was great!',
+            rating: 4,
+            destination: 'Nusa Penida, Bali',
+            departure_date: new Date('2020-04-25'),
+          },
+        ],
       },
     },
   },

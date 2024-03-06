@@ -24,7 +24,9 @@ export function packageRoutes(
     method: 'GET',
     url: '/package/find-one/:id',
     schema: findOneSchema,
-    handler: PackageService.findOneHandler,
+    handler: (request: FastifyRequest<any>, reply: FastifyReply) => {
+      PackageService.findOneHandler(fastify, request, reply);
+    },
   });
   done();
 }

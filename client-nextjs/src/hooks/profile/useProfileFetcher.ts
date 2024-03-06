@@ -1,6 +1,7 @@
 import useSWR, { KeyedMutator } from 'swr'
 
 interface IPackageResponse {
+  id: number
   name: string
   country: string
   thumbnail: string

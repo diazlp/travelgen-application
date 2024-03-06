@@ -19,6 +19,7 @@ export default class PackageService {
   }
 
   static async findOneHandler(
+    fastify: FastifyInstance,
     request: FastifyRequest<{
       Params: {
         id: string;
@@ -34,7 +35,25 @@ export default class PackageService {
         },
       });
 
-      return reply.status(200).send(pkg);
+      const testimonies = await fastify.mongo.client
+        .db('travelgen')
+        .collection('testimonies')
+        .aggregate([
+          {
+            $match: {
+              destination: pkg.name,
+            },
+          },
+          {
+            $limit: 4,
+          },
+        ])
+        .toArray();
+
+      return reply.status(200).send({
+        ...pkg,
+        testimonies,
+      });
     } catch (error) {
       return reply.status(500).send({ message: 'Internal server error.' });
     }

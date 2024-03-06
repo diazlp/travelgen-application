@@ -2,6 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import Button from '@/components/button'
 import { ITransactionResponse } from '@/hooks/profile/useProfileFetcher'
+import { useRouter } from 'next/router'
 
 interface HistoryCardProps {
   history: ITransactionResponse
@@ -10,6 +11,8 @@ interface HistoryCardProps {
 export default function HistoryCard({
   history
 }: HistoryCardProps): React.ReactNode {
+  const router = useRouter()
+
   return (
     <article className="flex flex-col bg-white rounded-xl shadow-lg overflow-hidden w-[393px]">
       <figure className="relative w-full h-[268px]">
@@ -43,8 +46,14 @@ export default function HistoryCard({
         </p>
 
         <div className="flex justify-between gap-3">
-          <Button isFullWidth isOutlined>
-            Lihat detail
+          <Button
+            isFullWidth
+            isOutlined
+            props={{
+              onClick: () => router.push(`/package/${history.package.id}`)
+            }}
+          >
+            See Detail
           </Button>
         </div>
       </div>

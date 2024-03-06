@@ -12,6 +12,7 @@ export interface Package {
   is_promo?: boolean
   created_at?: Date | string
   updated_at?: Date | string
+  testimonies: Testimony[]
 }
 
 export interface Category {
