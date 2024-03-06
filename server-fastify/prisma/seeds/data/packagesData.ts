@@ -62,7 +62,7 @@ export const packagesData: IPackageModel[] = [
     is_promo: false,
   },
   {
-    id: 4,
+    id: 4.9,
     name: 'Borobudur, Yogyakarta',
     country: 'Indonesia',
     price: 6930000,
@@ -117,7 +117,7 @@ export const packagesData: IPackageModel[] = [
     description:
       'Indulge in the iconic Eiffel Tower, Paris with a solo package featuring flights, 5 nights accommodation, guided tours, meals, off-road experience, and transportation.',
     departure_date: '2023-07-15T00:00:00.000Z',
-    rating: 4.9,
+    rating: 4.6,
     reviewers: 640,
     is_promo: true,
   },

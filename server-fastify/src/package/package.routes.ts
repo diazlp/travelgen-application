@@ -7,7 +7,8 @@ import {
 import {
   findAllSchema,
   findOneSchema,
-  categoriesSchema,
+  findAllCategorySchema,
+  findAllTestimonySchema,
 } from './package.schema';
 import Middleware from '../middleware';
 import PackageService from './package.service';
@@ -33,10 +34,19 @@ export function packageRoutes(
 
   fastify.route({
     method: 'GET',
-    url: '/package/categories',
-    schema: categoriesSchema,
+    url: '/category/find-all',
+    schema: findAllCategorySchema,
     handler: (_: FastifyRequest<any>, reply: FastifyReply) => {
-      PackageService.categoriesHandler(fastify, reply);
+      PackageService.findAllCategoryHandler(fastify, reply);
+    },
+  });
+
+  fastify.route({
+    method: 'GET',
+    url: '/testimony/find-all',
+    schema: findAllTestimonySchema,
+    handler: (request: FastifyRequest<any>, reply: FastifyReply) => {
+      PackageService.findAllTestimonyHandler(fastify, request, reply);
     },
   });
 

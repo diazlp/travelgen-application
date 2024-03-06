@@ -1,33 +1,42 @@
 import React, { useEffect } from 'react'
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
-import { usePackageStore, useCategoryStore } from '@/libs/store'
-import { Package, Category } from '@/libs/types/interface'
-import { fetchCategories, fetchPackages } from '@/libs/utils'
+import {
+  usePackageStore,
+  useCategoryStore,
+  useTestimonyStore
+} from '@/libs/store'
+import { Package, Category, Testimony } from '@/libs/types/interface'
+import { fetchCategories, fetchPackages, fetchTestimonies } from '@/libs/utils'
 import HomeContainer from '@/containers/home'
 
 interface HomePageProps {
   packages: Package[]
   categories: Category[]
+  testimonies: Testimony[]
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const [packages, categories] = await Promise.all([
+  const [packages, categories, testimonies] = await Promise.all([
     fetchPackages(),
-    fetchCategories()
+    fetchCategories(),
+    fetchTestimonies()
   ])
 
   return {
     props: {
       packages,
-      categories
-    }
+      categories,
+      testimonies
+    },
+    revalidate: 60
   }
 }
 
 export default function HomePage({
   packages,
-  categories
+  categories,
+  testimonies
 }: HomePageProps): React.ReactNode {
   useEffect(() => {
     usePackageStore.getState().setPackages(packages)
@@ -36,6 +45,10 @@ export default function HomePage({
   useEffect(() => {
     useCategoryStore.getState().setCategories(categories)
   }, [categories])
+
+  useEffect(() => {
+    useTestimonyStore.getState().setTestimonies(testimonies)
+  }, [testimonies])
 
   return (
     <>

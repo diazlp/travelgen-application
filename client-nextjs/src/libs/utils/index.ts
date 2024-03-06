@@ -1,7 +1,8 @@
-import fetchCategories from './fetchCategories'
 import fetchPackages from './fetchPackages'
+import fetchCategories from './fetchCategories'
+import fetchTestimonies from './fetchTestimonies'
 
-export { fetchCategories, fetchPackages }
+export { fetchPackages, fetchCategories, fetchTestimonies }
 
 /**
  * Utils class containing utility methods.

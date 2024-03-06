@@ -21,12 +21,12 @@ export interface Category {
 }
 
 export interface Testimony {
-  id: string
-  fullName: string
-  photo: string
+  _id: string
+  full_name: string
+  avatar: string
   location: string
   review: string
   rating: number
   destination: string
-  checkoutDate: string
+  checkout_at: Date | string
 }

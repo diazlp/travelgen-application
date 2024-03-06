@@ -11,7 +11,7 @@ export default function TestimonySection(): React.ReactNode {
 
       <div className="flex justify-between">
         {testimonies.map((testimony) => (
-          <TestimonyCard data={testimony} key={testimony.id} />
+          <TestimonyCard data={testimony} key={testimony._id} />
         ))}
       </div>
     </section>

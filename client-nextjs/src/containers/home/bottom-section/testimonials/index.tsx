@@ -1,8 +1,14 @@
-import { testimonies } from '@/libs/constants'
 import React, { Fragment } from 'react'
+import { useTestimonyStore } from '@/libs/store'
 import TestimonyCard from './testimony-card'
 
 export default function Testimonials(): React.ReactNode {
+  const testimonies = useTestimonyStore((state) => state.testimonies)
+
+  if (!testimonies?.length) {
+    return <></>
+  }
+
   return (
     <Fragment>
       <h3 className="text-heading-3 font-label font-bold pt-14 mb-1">
@@ -14,7 +20,7 @@ export default function Testimonials(): React.ReactNode {
 
       <div className="flex justify-between">
         {testimonies.map((testimony) => (
-          <TestimonyCard data={testimony} key={testimony.id} />
+          <TestimonyCard data={testimony} key={testimony._id} />
         ))}
       </div>
     </Fragment>

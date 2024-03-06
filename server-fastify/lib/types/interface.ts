@@ -52,3 +52,14 @@ export interface ICategoryModel {
   name: string;
   thumbnail: string;
 }
+
+export interface ITestimonyModel {
+  _id: string;
+  full_name: string;
+  avatar: string;
+  location: string;
+  review: string;
+  rating: number;
+  destination: string;
+  checkout_at: Date | string;
+}

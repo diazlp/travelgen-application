@@ -97,12 +97,12 @@ export const findOneSchema: FastifySchema = {
   },
 };
 
-export const categoriesSchema: FastifySchema = {
-  tags: ['Package'],
-  summary: 'Package categories endpoint',
+export const findAllCategorySchema: FastifySchema = {
+  tags: ['Category'],
+  summary: 'Get categories endpoint',
   response: {
     200: {
-      description: 'All categories response',
+      description: 'Get categories response',
       type: 'array',
       items: {
         type: 'object',
@@ -118,6 +118,49 @@ export const categoriesSchema: FastifySchema = {
           name: 'Europe',
           thumbnail:
             'https://images.unsplash.com/photo-1511739001486-6bfe10ce785f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80',
+        },
+      ],
+    },
+  },
+};
+
+export const findAllTestimonySchema: FastifySchema = {
+  tags: ['Testimony'],
+  summary: 'Get testimonies endpoint',
+  querystring: {
+    type: 'object',
+    properties: {
+      destination: { type: 'string' },
+    },
+  },
+  response: {
+    200: {
+      description: 'Get testimonies response',
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          _id: { type: 'string' },
+          full_name: { type: 'string' },
+          avatar: { type: 'string' },
+          location: { type: 'string' },
+          review: { type: 'string' },
+          rating: { type: 'number' },
+          destination: { type: 'string' },
+          checkout_at: { type: 'string', format: 'date' },
+        },
+      },
+      example: [
+        {
+          _id: '65e83930343a86075a90348c',
+          full_name: 'Diaz Linggaputra',
+          avatar:
+            'https://diazlinggaputra.vercel.app/_next/image?url=%2Fassets%2Fimages%2Fdiazlp-photo.png&w=384&q=75',
+          location: 'Indonesia',
+          review: 'It was great!',
+          rating: 4,
+          destination: 'Nusa Penida, Bali',
+          departure_date: new Date('2020-04-25'),
         },
       ],
     },

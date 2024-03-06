@@ -38,6 +38,14 @@ export const swaggerOptions: FastifyDynamicSwaggerOptions = {
         description: 'Application Package API',
       },
       {
+        name: 'Category',
+        description: 'Application Category API',
+      },
+      {
+        name: 'Testimony',
+        description: 'Application Testimony API',
+      },
+      {
         name: 'Transaction',
         description: 'User Transaction API',
       },
