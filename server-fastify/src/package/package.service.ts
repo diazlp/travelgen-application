@@ -1,6 +1,6 @@
 import { FastifyRequest, FastifyReply, FastifyInstance } from 'fastify';
-import { PrismaClient, Package } from '@prisma/client';
-import { ITestimonyModel } from 'lib/types/interface';
+import { PrismaClient } from '@prisma/client';
+import { IPackageModel } from 'lib/types/interface';
 
 const prisma = new PrismaClient();
 
@@ -8,12 +8,13 @@ export default class PackageService {
   static async findAllHandler(
     _: FastifyRequest,
     reply: FastifyReply,
-  ): Promise<Package[] | { message: string }> {
+  ): Promise<IPackageModel[] | { message: string }> {
     try {
       const packages = await prisma.package.findMany();
 
       return reply.status(200).send(packages);
     } catch (error) {
+      console.log(error, '<< lu kenapa?');
       return reply.status(500).send({ message: 'Internal server error.' });
     }
   }
@@ -26,7 +27,7 @@ export default class PackageService {
       };
     }>,
     reply: FastifyReply,
-  ): Promise<Package | { message: string }> {
+  ): Promise<IPackageModel | { message: string }> {
     try {
       const { id } = request.params;
       const pkg = await prisma.package.findFirst({

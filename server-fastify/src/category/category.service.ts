@@ -1,8 +1,5 @@
 import { FastifyReply, FastifyInstance } from 'fastify';
-import { PrismaClient } from '@prisma/client';
 import { ICategoryModel } from 'lib/types/interface';
-
-const prisma = new PrismaClient();
 
 export default class CategoryService {
   static async findAllHandler(
