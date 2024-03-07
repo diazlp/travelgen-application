@@ -1,10 +1,13 @@
 {
-  "name": "travelgen-web",
-  "version": "0.1.0",
+  "name": "travelgen-client",
+  "version": "1.0.0",
   "description": "Discover the world with us by your side",
   "private": true,
   "author": "Diaz Linggaputra",
   "license": "MIT",
+  "engines": {
+    "node": "18.x"
+  },
   "scripts": {
     "dev": "next dev -p 3001",
     "build": "next build",

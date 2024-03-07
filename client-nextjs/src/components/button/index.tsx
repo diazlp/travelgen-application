@@ -1,6 +1,5 @@
 import React, { ButtonHTMLAttributes } from 'react'
 import { FaGoogle } from 'react-icons/fa6'
-import styles from './Button.module.css'
 
 interface ButtonProps {
   children: React.ReactNode | string
@@ -29,9 +28,9 @@ export default function Button({
     <button
       type={type}
       className={`
-        ${styles.button} 
-        ${isFullWidth ? styles.fullWidth : ''} 
-        ${isOutlined ? styles.outlined : ''}
+        p-2 h-[45px] font-label font-bold rounded-md
+        ${isFullWidth ? 'w-100' : ''} 
+        ${isOutlined ? 'bg-white text-blue-100 border border-blue-100' : ''}
         ${variant === 'primary' ? 'bg-blue-100' : 'bg-red-100'}
         ${isDisabled ? 'bg-blue-30 cursor-not-allowed' : null}
         ${className}

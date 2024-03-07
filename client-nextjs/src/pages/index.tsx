@@ -54,10 +54,6 @@ export default function HomePage({
     <>
       <Head>
         <title>TravelGen Web</title>
-        <meta
-          name="description"
-          content="Embark on an exciting journey with our Travel Agent application! Discover and order custom travel packages tailored to your preferences, all at the touch of a button"
-        />
         <meta name="author" content="Diaz Linggaputra" />
       </Head>
       <HomeContainer />
