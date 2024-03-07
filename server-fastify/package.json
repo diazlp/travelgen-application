@@ -1,11 +1,15 @@
 {
   "name": "travelgen-server",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Travelgen Application Server",
   "private": true,
   "author": "Diaz Linggaputra",
   "license": "MIT",
+  "engines": {
+    "node": "18.x"
+  },
   "scripts": {
+    "postinstall": "prisma generate",
     "prebuild": "rimraf dist",
     "build": "tsc -p tsconfig.json",
     "dev": "nodemon src/index.ts --watch",
@@ -21,6 +25,7 @@
     "@fastify/swagger-ui": "^3.0.0",
     "@prisma/client": "^5.10.2",
     "bcrypt": "^5.1.1",
+    "dotenv": "^16.4.5",
     "fastify": "^4.26.1",
     "fastify-bcrypt": "^1.0.1",
     "fastify-stripe": "^2.4.1",

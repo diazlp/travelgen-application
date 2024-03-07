@@ -1,7 +1,11 @@
+'use strict';
+
+// Read the .env file.
 import * as dotenv from 'dotenv';
 dotenv.config();
 
-import fastify, { FastifyInstance } from 'fastify';
+// Require the framework
+import fastify from 'fastify';
 import cors from '@fastify/cors';
 import fastifySwagger from '@fastify/swagger';
 import fastifySwaggerUi from '@fastify/swagger-ui';
@@ -12,17 +16,20 @@ import fastifyMongodb from '@fastify/mongodb';
 
 import { swaggerOptions, swaggerUIOptions } from '../lib/swagger/options';
 
-import { healthRoutes } from './health/health.routes';
-import { authRoutes } from './auth/auth.routes';
-import { packageRoutes } from './package/package.routes';
-import { categoryRoutes } from './category/category.routes';
-import { testimonyRoutes } from './testimony/testimony.routes';
-import { transactionRoutes } from './transaction/transaction.routes';
+import { healthRoutes } from '../src/health/health.routes';
+import { authRoutes } from '../src/auth/auth.routes';
+import { packageRoutes } from '../src/package/package.routes';
+import { categoryRoutes } from '../src/category/category.routes';
+import { testimonyRoutes } from '../src/testimony/testimony.routes';
+import { transactionRoutes } from '../src/transaction/transaction.routes';
 
-const app: FastifyInstance = fastify({
+// Instantiate Fastify with some config
+const app = fastify({
   logger: false,
 });
 
+// Register your application as a normal plugin.
+// app.register(require('../src/index'));
 /*Application Cross-Origin Resource Sharing (CORS)*/
 app.register(cors, { origin: '*' });
 
@@ -57,18 +64,7 @@ app.register(categoryRoutes, { prefix: '/v1.0' });
 app.register(testimonyRoutes, { prefix: '/v1.0' });
 app.register(transactionRoutes, { prefix: '/v1.0' });
 
-const start = async () => {
-  try {
-    await app.listen({ port: (process.env.PORT as any) || 4009 });
-
-    const address = app.server.address();
-    const port = typeof address === 'string' ? address : address?.port;
-
-    console.log(`Server running on port ${port}`);
-  } catch (err) {
-    app.log.error(err);
-    process.exit(1);
-  }
+export default async (req, res) => {
+  await app.ready();
+  app.server.emit('request', req, res);
 };
-
-start();

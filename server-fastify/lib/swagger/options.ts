@@ -19,9 +19,11 @@ export const swaggerOptions: FastifyDynamicSwaggerOptions = {
       url: 'https://github.com/diazlp',
       description: 'See Diaz other code',
     },
-    host: '127.0.0.1:4009',
+    host: process.env.SWAGGER_HOST,
     basePath: '',
-    schemes: ['http', 'https'],
+    schemes: process.env.SWAGGER_HOST.includes('127.0.0.1')
+      ? ['http', 'https']
+      : ['https'],
     consumes: ['application/json'],
     produces: ['application/json'],
     tags: [
