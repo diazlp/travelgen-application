@@ -29,7 +29,6 @@ export default class MailService {
     try {
       const htmlTemplatePath = path.join(
         process.cwd(),
-        'dist',
         'src',
         'mail',
         'templates',
@@ -38,6 +37,11 @@ export default class MailService {
       const htmlTemplate = readFileSync(htmlTemplatePath, 'utf8')
         .replace('{{ fullName }}', userDetail.fullName)
         .replace('{{ verificationCode }}', userDetail.verificationCode);
+
+      console.log(
+        htmlTemplate,
+        '<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<,>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>',
+      );
 
       await MailService.transporter.sendMail({
         to: userDetail.email,
