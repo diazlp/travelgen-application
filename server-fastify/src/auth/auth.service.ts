@@ -59,6 +59,8 @@ export default class AuthService {
         .send({ token: jwt, message: 'Login successful' });
     } catch (error) {
       reply.status(500).send({ message: 'Internal Server Error' });
+    } finally {
+      await prisma.$disconnect();
     }
   }
 
@@ -108,6 +110,8 @@ export default class AuthService {
         }
       }
       return reply.status(500).send({ message: 'Internal server error.' });
+    } finally {
+      await prisma.$disconnect();
     }
   }
 
@@ -146,6 +150,8 @@ export default class AuthService {
         }
       }
       return reply.status(500).send({ message: 'Internal server error.' });
+    } finally {
+      await prisma.$disconnect();
     }
   }
 
@@ -213,6 +219,8 @@ export default class AuthService {
         }
       }
       return reply.status(500).send({ message: 'Internal server error.' });
+    } finally {
+      await prisma.$disconnect();
     }
   }
 
@@ -255,6 +263,8 @@ export default class AuthService {
         }
       }
       return reply.status(500).send({ message: 'Internal server error.' });
+    } finally {
+      await prisma.$disconnect();
     }
   }
 
@@ -297,6 +307,8 @@ export default class AuthService {
         }
       }
       return reply.status(500).send({ message: 'Internal server error.' });
+    } finally {
+      await prisma.$disconnect();
     }
   }
 }

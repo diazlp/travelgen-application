@@ -111,6 +111,8 @@ export default class TestimonyService {
         .send({ message: 'New testimony has been added.' });
     } catch (error) {
       return reply.status(500).send({ message: 'Internal server error.' });
+    } finally {
+      await prisma.$disconnect();
     }
   }
 }

@@ -58,6 +58,8 @@ export default class TransactionService {
         }
       }
       return reply.status(500).send({ message: 'Internal server error.' });
+    } finally {
+      await prisma.$disconnect();
     }
   }
 }

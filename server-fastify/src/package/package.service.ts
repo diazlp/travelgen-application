@@ -12,8 +12,9 @@ export default class PackageService {
 
       return reply.status(200).send(packages);
     } catch (error) {
-      console.log(error, '<< lu kenapa?');
       return reply.status(500).send({ message: 'Internal server error.' });
+    } finally {
+      await prisma.$disconnect();
     }
   }
 
@@ -55,6 +56,8 @@ export default class PackageService {
       });
     } catch (error) {
       return reply.status(500).send({ message: 'Internal server error.' });
+    } finally {
+      await prisma.$disconnect();
     }
   }
 }
