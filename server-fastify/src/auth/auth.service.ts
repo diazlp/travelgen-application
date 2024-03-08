@@ -102,6 +102,7 @@ export default class AuthService {
 
       return reply.status(201).send({ message: 'Register successful' });
     } catch (error) {
+      console.log(error, '<<<<<<<<<<<<<<<<<<< ini errornya');
       if (error instanceof Prisma.PrismaClientKnownRequestError) {
         if (error.code === 'P2002') {
           return reply
