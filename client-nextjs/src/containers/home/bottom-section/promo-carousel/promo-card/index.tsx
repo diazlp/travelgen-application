@@ -67,7 +67,7 @@ export default function PromoCard({ data }: PromoCardProps): React.ReactNode {
           <Button
             isFullWidth
             isOutlined
-            className="text-heading-5 text-white"
+            className="text-heading-5"
             props={{
               onClick: () => router.push(`/package/${data.id}`)
             }}

@@ -29,7 +29,7 @@ export default function Button({
       type={type}
       className={`
         p-2 h-[45px] font-label font-bold rounded-md
-        ${isFullWidth ? 'w-100' : ''} 
+        ${isFullWidth ? 'w-[100%]' : ''} 
         ${isOutlined ? 'bg-white text-blue-100 border border-blue-100' : ''}
         ${variant === 'primary' ? 'bg-blue-100' : 'bg-red-100'}
         ${isDisabled ? 'bg-blue-30 cursor-not-allowed' : null}

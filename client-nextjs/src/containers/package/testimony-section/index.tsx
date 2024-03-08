@@ -22,7 +22,7 @@ export default function TestimonySection({
       </h3>
       <Button
         isOutlined
-        className="text-white flex items-center mb-6 hover:text-white hover:bg-blue-100"
+        className="flex items-center mb-6 hover:text-white hover:bg-blue-100"
         props={{
           onClick: () => showTestimonyModal(packageData)
         }}

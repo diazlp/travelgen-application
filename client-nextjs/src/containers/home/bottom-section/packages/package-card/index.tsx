@@ -62,7 +62,7 @@ export default function PackageCard({
           <Button
             isFullWidth
             isOutlined
-            className="text-heading-5 text-white"
+            className="text-heading-5"
             props={{
               onClick: () => router.push(`/package/${data.id}`)
             }}
