@@ -65,9 +65,7 @@ export function authRoutes(
     ) => {
       Middleware.verifyToken(fastify, request, reply, done);
     },
-    handler: (request: FastifyRequest<any>, reply: FastifyReply) => {
-      AuthService.profileHandler(fastify, request, reply);
-    },
+    handler: AuthService.profileHandler,
   });
 
   fastify.route({
@@ -81,9 +79,7 @@ export function authRoutes(
     ) => {
       Middleware.verifyToken(fastify, request, reply, done);
     },
-    handler: (request: FastifyRequest<any>, reply: FastifyReply) => {
-      AuthService.updateProfileHandler(fastify, request, reply);
-    },
+    handler: AuthService.updateProfileHandler,
   });
 
   fastify.route({
@@ -97,9 +93,7 @@ export function authRoutes(
     ) => {
       Middleware.verifyToken(fastify, request, reply, done);
     },
-    handler: (request: FastifyRequest<any>, reply: FastifyReply) => {
-      AuthService.verifyEmailHandler(fastify, request, reply);
-    },
+    handler: AuthService.verifyEmailHandler,
   });
 
   done();

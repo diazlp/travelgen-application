@@ -1,6 +1,7 @@
 import Stripe from 'stripe';
 import { FastifyRequest, FastifyReply, FastifyInstance } from 'fastify';
 import { Prisma } from '@prisma/client';
+import prisma from '../../lib/utils/prisma';
 
 enum PaymentStatus {
   open = 'open',
@@ -33,7 +34,7 @@ export default class TransactionService {
         });
       }
 
-      await fastify.prisma.transaction.create({
+      await prisma.transaction.create({
         data: {
           user_id: id,
           package_id: package_id,

@@ -8,7 +8,6 @@ import fastifySwaggerUi from '@fastify/swagger-ui';
 import fastifyBcrypt from 'fastify-bcrypt';
 import fastifyJwt from '@fastify/jwt';
 import fastifyStripe from 'fastify-stripe';
-import fastifyPrismaClient from 'fastify-prisma-client';
 import fastifyMongodb from '@fastify/mongodb';
 
 import { swaggerOptions, swaggerUIOptions } from '../lib/swagger/options';
@@ -36,9 +35,6 @@ app.register(fastifyBcrypt, {
 app.register(fastifyJwt, {
   secret: process.env.JWT_SECRET_KEY,
 });
-
-/*Register Prisma Client*/
-app.register(fastifyPrismaClient);
 
 /*Register MongoDB*/
 app.register(fastifyMongodb, {

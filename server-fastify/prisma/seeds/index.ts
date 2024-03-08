@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client';
+import prisma from '../../lib/utils/prisma';
 import { hashPassword } from 'lib/utils/bcrypt';
 import {
   usersData,
@@ -6,8 +6,6 @@ import {
   packagesData,
   transactionsData,
 } from './data';
-
-const prisma = new PrismaClient();
 
 async function seed() {
   try {

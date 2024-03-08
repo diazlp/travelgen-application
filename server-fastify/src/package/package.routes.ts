@@ -16,9 +16,7 @@ export function packageRoutes(
     method: 'GET',
     url: '/package/find-all',
     schema: findAllSchema,
-    handler: (request: FastifyRequest<any>, reply: FastifyReply) => {
-      PackageService.findAllHandler(fastify, request, reply);
-    },
+    handler: PackageService.findAllHandler,
   });
 
   fastify.route({

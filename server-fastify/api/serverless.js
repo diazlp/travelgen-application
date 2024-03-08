@@ -44,9 +44,6 @@ app.register(fastifyJwt, {
   secret: process.env.JWT_SECRET_KEY,
 });
 
-/*Register Prisma Client*/
-app.register(fastifyPrismaClient);
-
 /*Register MongoDB*/
 app.register(fastifyMongodb, {
   forceClose: true,
