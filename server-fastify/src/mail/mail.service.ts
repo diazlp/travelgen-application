@@ -1,3 +1,4 @@
+import * as path from 'path';
 import { readFileSync } from 'fs';
 import { createTransport, Transporter } from 'nodemailer';
 
@@ -26,10 +27,15 @@ export default class MailService {
 
   static async emailVerification(userDetail: IMailVerification): Promise<void> {
     try {
-      const htmlTemplate = readFileSync(
-        './src/mail/templates/email-verification.html',
-        'utf8',
-      )
+      const htmlTemplatePath = path.join(
+        process.cwd(),
+        'dist',
+        'src',
+        'mail',
+        'templates',
+        'email-verification.html',
+      );
+      const htmlTemplate = readFileSync(htmlTemplatePath, 'utf8')
         .replace('{{ fullName }}', userDetail.fullName)
         .replace('{{ verificationCode }}', userDetail.verificationCode);
 
