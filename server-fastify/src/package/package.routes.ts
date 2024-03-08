@@ -5,7 +5,6 @@ import {
   FastifyReply,
 } from 'fastify';
 import { findAllSchema, findOneSchema } from './package.schema';
-import Middleware from '../middleware';
 import PackageService from './package.service';
 
 export function packageRoutes(
@@ -17,7 +16,9 @@ export function packageRoutes(
     method: 'GET',
     url: '/package/find-all',
     schema: findAllSchema,
-    handler: PackageService.findAllHandler,
+    handler: (request: FastifyRequest<any>, reply: FastifyReply) => {
+      PackageService.findAllHandler(fastify, request, reply);
+    },
   });
 
   fastify.route({

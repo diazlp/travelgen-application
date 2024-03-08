@@ -1,8 +1,5 @@
 import { FastifyRequest, FastifyReply, FastifyInstance } from 'fastify';
 import { ITestimonyModel } from 'lib/types/interface';
-import { PrismaClient, Prisma } from '@prisma/client';
-
-const prisma = new PrismaClient();
 
 export default class TestimonyService {
   static async findAllHandler(
@@ -75,7 +72,7 @@ export default class TestimonyService {
           .send({ message: 'Rating must be between 1 and 5' });
       }
 
-      const packageData = await prisma.package.findFirst({
+      const packageData = await fastify.prisma.package.findFirst({
         where: {
           name: destination,
         },
@@ -85,7 +82,7 @@ export default class TestimonyService {
         return reply.status(404).send({ message: 'Destination not found.' });
       }
 
-      const userData = await prisma.user.findUnique({
+      const userData = await fastify.prisma.user.findUnique({
         where: {
           email,
         },

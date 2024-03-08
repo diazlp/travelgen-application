@@ -1,9 +1,7 @@
 import { FastifyRequest, FastifyReply, FastifyInstance } from 'fastify';
-import { PrismaClient, Prisma } from '@prisma/client';
+import { Prisma } from '@prisma/client';
 import { DEFAULT_AVATAR } from '../../lib/constants';
 import MailService from '../../src/mail/mail.service';
-
-const prisma = new PrismaClient();
 
 export default class AuthService {
   private static generateVerificationCode(length: number): string {
@@ -23,7 +21,7 @@ export default class AuthService {
     const { email, password } = request.body;
 
     try {
-      const user = await prisma.user.findUnique({
+      const user = await fastify.prisma.user.findUnique({
         where: {
           email,
         },
@@ -77,7 +75,7 @@ export default class AuthService {
     const verificationCode = AuthService.generateVerificationCode(5);
 
     try {
-      const newUser = await prisma.user.create({
+      const newUser = await fastify.prisma.user.create({
         data: {
           full_name: fullName,
           email,
@@ -86,7 +84,7 @@ export default class AuthService {
         },
       });
 
-      await prisma.profile.create({
+      await fastify.prisma.profile.create({
         data: {
           user_id: newUser.id,
           avatar: DEFAULT_AVATAR,
@@ -128,7 +126,7 @@ export default class AuthService {
     const hashedPassword = await fastify.bcrypt.hash(password);
 
     try {
-      await prisma.user.update({
+      await fastify.prisma.user.update({
         where: {
           email,
         },
@@ -151,6 +149,7 @@ export default class AuthService {
   }
 
   static async profileHandler(
+    fastify: FastifyInstance,
     request: FastifyRequest<{
       Headers: {
         email: string;
@@ -161,7 +160,7 @@ export default class AuthService {
     const { email } = JSON.parse(request.headers.authorization);
 
     try {
-      const userProfile = await prisma.user.findUniqueOrThrow({
+      const userProfile = await fastify.prisma.user.findUniqueOrThrow({
         where: {
           email,
         },
@@ -218,6 +217,7 @@ export default class AuthService {
   }
 
   static async updateProfileHandler(
+    fastify: FastifyInstance,
     request: FastifyRequest<{
       Body: {
         full_name: string;
@@ -231,7 +231,7 @@ export default class AuthService {
     const { full_name, location, biography } = request.body;
 
     try {
-      await prisma.user.update({
+      await fastify.prisma.user.update({
         where: {
           email,
         },
@@ -260,6 +260,7 @@ export default class AuthService {
   }
 
   static async verifyEmailHandler(
+    fastify: FastifyInstance,
     request: FastifyRequest<{
       Headers: {
         email: string;
@@ -280,7 +281,7 @@ export default class AuthService {
     }
 
     try {
-      await prisma.user.update({
+      await fastify.prisma.user.update({
         where: {
           email,
         },

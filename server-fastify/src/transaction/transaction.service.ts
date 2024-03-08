@@ -1,13 +1,11 @@
-import { FastifyRequest, FastifyReply, FastifyInstance } from 'fastify';
 import Stripe from 'stripe';
-import { PrismaClient, Prisma } from '@prisma/client';
+import { FastifyRequest, FastifyReply, FastifyInstance } from 'fastify';
+import { Prisma } from '@prisma/client';
 
 enum PaymentStatus {
   open = 'open',
   complete = 'complete',
 }
-
-const prisma = new PrismaClient();
 
 export default class TransactionService {
   static async paymentHandler(
@@ -35,7 +33,7 @@ export default class TransactionService {
         });
       }
 
-      await prisma.transaction.create({
+      await fastify.prisma.transaction.create({
         data: {
           user_id: id,
           package_id: package_id,
