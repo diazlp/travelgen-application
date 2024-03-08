@@ -33,8 +33,6 @@ export default class MailService {
         .replace('{{ fullName }}', userDetail.fullName)
         .replace('{{ verificationCode }}', userDetail.verificationCode);
 
-      console.log('<<<<<<<<<<<<<<<<<<<<<<<', userDetail.email);
-
       await MailService.transporter.sendMail({
         to: userDetail.email,
         subject: 'TravelGen Email Verification',

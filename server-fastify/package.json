@@ -11,7 +11,7 @@
   "scripts": {
     "postinstall": "prisma generate",
     "prebuild": "rimraf dist",
-    "build": "tsc -p tsconfig.json",
+    "build": "tsc -p tsconfig.json && copyfiles --flat ./src/mail/templates/* ./dist/src/mail/templates/",
     "dev": "nodemon src/index.ts --watch",
     "start": "node dist/src/index.js",
     "migrate": "prisma migrate dev",
@@ -39,6 +39,7 @@
     "@types/fastify-cors": "^2.1.0",
     "@types/node": "^20.11.21",
     "@types/nodemailer": "^6.4.14",
+    "copyfiles": "^2.4.1",
     "nodemon": "^3.1.0",
     "ts-node": "^10.9.2",
     "tsx": "^4.7.1",
