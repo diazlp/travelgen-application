@@ -1,3 +1,7 @@
+const emailVerificationTemplate = (
+  fullName: string,
+  verificationCode: string,
+): string => `
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html data-editor-version="2" class="sg-campaigns" xmlns="http://www.w3.org/1999/xhtml">
   <head>
@@ -161,7 +165,7 @@
                                               <table class="module" role="module" data-type="text" border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;" data-muid="948e3f3f-5214-4721-a90e-625a47b1c957" data-mc-module-version="2019-10-22">
                                                 <tbody>
                                                   <tr>
-                                                    <td style="padding:50px 30px 18px 30px; line-height:36px; text-align:inherit; background-color:#ffffff;" height="100%" valign="top" bgcolor="#ffffff" role="module-content"><div><div style="font-family: inherit; text-align: center"><span style="font-size: 43px">Welcome to <span style="color:#1053B7; font-weight:600">Travel</span><span style="color:#EBA41F; font-weight:600">Gen</span>, {{ fullName }}!</span></div><div></div></div></td>
+                                                    <td style="padding:50px 30px 18px 30px; line-height:36px; text-align:inherit; background-color:#ffffff;" height="100%" valign="top" bgcolor="#ffffff" role="module-content"><div><div style="font-family: inherit; text-align: center"><span style="font-size: 43px">Welcome to <span style="color:#1053B7; font-weight:600">Travel</span><span style="color:#EBA41F; font-weight:600">Gen</span>, ${fullName}!</span></div><div></div></div></td>
                                                   </tr>
                                                 </tbody>
                                               </table>
@@ -191,7 +195,7 @@
                                                         <tbody>
                                                           <tr>
                                                           <td align="center" bgcolor="#ffbe00" class="inner-td" style="border-radius:6px; font-size:16px; text-align:center; background-color:inherit;">
-                                                            <a href="https://diazlinggaputra.vercel.app/" style="background-color:#1053B7; border:1px solid #eba41f; border-color:#B0D7FF; border-radius:0px; border-width:1px; color:#fff; display:inline-block; font-size:14px; font-weight:normal; line-height:normal; padding:12px 35px 12px 40px; text-align:center; text-decoration:none; border-style:solid; font-family:inherit;margin-bottom:30px;letter-spacing: 5px; font-weight:bold; text-transform:uppercase; text-align:center" target="_blank">{{ verificationCode }}</a>
+                                                            <a href="https://diazlinggaputra.vercel.app/" style="background-color:#1053B7; border:1px solid #eba41f; border-color:#B0D7FF; border-radius:0px; border-width:1px; color:#fff; display:inline-block; font-size:14px; font-weight:normal; line-height:normal; padding:12px 35px 12px 40px; text-align:center; text-decoration:none; border-style:solid; font-family:inherit;margin-bottom:30px;letter-spacing: 5px; font-weight:bold; text-transform:uppercase; text-align:center" target="_blank">${verificationCode}</a>
                                                           </td>
                                                           </tr>
                                                         </tbody>
@@ -242,3 +246,6 @@
     </div>
   </body>
 </html>
+`;
+
+export default emailVerificationTemplate;

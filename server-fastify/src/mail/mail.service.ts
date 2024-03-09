@@ -1,6 +1,7 @@
-import * as path from 'path';
-import { readFileSync } from 'fs';
+// import * as path from 'path';
+// import { readFileSync } from 'fs';
 import { createTransport, Transporter } from 'nodemailer';
+import emailVerificationTemplate from './templates/email-verification';
 
 interface IMailVerification {
   fullName: string;
@@ -27,6 +28,7 @@ export default class MailService {
 
   static async emailVerification(userDetail: IMailVerification): Promise<void> {
     try {
+      /*USING PATH NOT WORKING IN SERVERLESS FUNCTION ON VERCEL DEPLOYMENT*/
       // const htmlTemplatePath = path.join(
       //   process.cwd(),
       //   'src',
@@ -34,21 +36,18 @@ export default class MailService {
       //   'templates',
       //   'email-verification.html',
       // );
-      const htmlTemplatePath = path.join(
-        process.cwd(),
-        'dist',
-        'api',
-        'templates',
-        'email-verification.html',
-      );
-      const htmlTemplate = readFileSync(htmlTemplatePath, 'utf8')
-        .replace('{{ fullName }}', userDetail.fullName)
-        .replace('{{ verificationCode }}', userDetail.verificationCode);
+      // const htmlTemplate = readFileSync(htmlTemplatePath, 'utf8')
+      //   .replace('{{ fullName }}', userDetail.fullName)
+      //   .replace('{{ verificationCode }}', userDetail.verificationCode);
 
       await MailService.transporter.sendMail({
         to: userDetail.email,
         subject: 'TravelGen Email Verification',
-        html: htmlTemplate,
+        // html: htmlTemplate,
+        html: emailVerificationTemplate(
+          userDetail.fullName,
+          userDetail.verificationCode,
+        ),
       });
     } catch (error) {
       throw new Error('Failed to send email verification');

@@ -66,6 +66,7 @@ const start = async () => {
 
     console.log(`Server running on port ${port}`);
   } catch (err) {
+    console.error(`Error starting the app, error:`, err);
     app.log.error(err);
     process.exit(1);
   }
