@@ -11,7 +11,7 @@
   "scripts": {
     "postinstall": "prisma generate",
     "prebuild": "rimraf dist",
-    "build": "tsc -p tsconfig.json && copyfiles --flat ./src/mail/templates/* ./dist/src/mail/templates/ && copyfiles --flat ./api/* ./dist/api/ && copyfiles --flat ./src/mail/templates/* ./dist/api/templates/",
+    "build": "tsc -p tsconfig.json && copyfiles --flat ./src/mail/templates/* ./dist/src/mail/templates/ && copyfiles --flat ./src/mail/templates/* ./dist/api/templates/",
     "dev": "nodemon src/index.ts --watch",
     "start": "node dist/src/index.js",
     "migrate": "prisma migrate dev",
