@@ -27,21 +27,23 @@ export default class MailService {
 
   static async emailVerification(userDetail: IMailVerification): Promise<void> {
     try {
+      // const htmlTemplatePath = path.join(
+      //   process.cwd(),
+      //   'src',
+      //   'mail',
+      //   'templates',
+      //   'email-verification.html',
+      // );
       const htmlTemplatePath = path.join(
         process.cwd(),
-        'src',
-        'mail',
+        'dist',
+        'api',
         'templates',
         'email-verification.html',
       );
       const htmlTemplate = readFileSync(htmlTemplatePath, 'utf8')
         .replace('{{ fullName }}', userDetail.fullName)
         .replace('{{ verificationCode }}', userDetail.verificationCode);
-
-      console.log(
-        htmlTemplate,
-        '<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<,>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>',
-      );
 
       await MailService.transporter.sendMail({
         to: userDetail.email,
