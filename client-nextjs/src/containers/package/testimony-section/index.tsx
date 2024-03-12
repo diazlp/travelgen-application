@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { useSession } from 'next-auth/react'
 import { Package, Testimony } from '@/libs/types/interface'
 import { IoIosAdd } from 'react-icons/io'
 import { useTestimonyModalStore } from '@/libs/store'
@@ -12,6 +13,7 @@ export default function TestimonySection({
 }: {
   packageData: Package
 }): React.ReactNode {
+  const { data: session } = useSession()
   const showTestimonyModal = useTestimonyModalStore((state) => state.showModal)
   const { testimonies } = useTestimonyFetcher(packageData.name)
 
@@ -20,15 +22,17 @@ export default function TestimonySection({
       <h3 className="text-heading-3 font-label font-bold">
         Customer Testimonies
       </h3>
-      <Button
-        isOutlined
-        className="flex items-center mb-6 hover:text-white hover:bg-blue-100"
-        props={{
-          onClick: () => showTestimonyModal(packageData)
-        }}
-      >
-        <IoIosAdd /> Add Testimony
-      </Button>
+      {session?.user ? (
+        <Button
+          isOutlined
+          className="flex items-center mb-6 hover:text-white hover:bg-blue-100"
+          props={{
+            onClick: () => showTestimonyModal(packageData)
+          }}
+        >
+          <IoIosAdd /> Add Testimony
+        </Button>
+      ) : null}
       {testimonies?.length ? (
         <div className="grid grid-cols-4">
           {testimonies.map((testimony: Testimony) => (
